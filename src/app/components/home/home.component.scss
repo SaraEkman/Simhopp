@@ -6,6 +6,7 @@ section {
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 
   article {
     display: flex;
@@ -24,14 +25,18 @@ section {
       text-align: center;
       margin-top: 0%;
     }
-
-    button {
-      margin-bottom: 10px;
-      padding: 5px 10px;
-      border: 1px solid #ccc;
-      background-color: #ff910d;
-      font-weight: bold;
-      cursor: pointer;
-    }
   }
+}
+button {
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  border: 1px solid #ccc;
+  background-color: #ff910d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+div {
+  margin-top: 1rem;
+  text-align: center;
 }

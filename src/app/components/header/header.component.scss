@@ -4,6 +4,7 @@ header {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
     padding-top: 1rem;
     padding-bottom: 1rem;
 
@@ -21,6 +22,10 @@ header {
       gap: 10px;
       align-items: center;
       list-style: none;
+
+      a {
+        text-decoration: none;
+      }
     }
     article:last-child {
       display: flex;
@@ -41,5 +46,18 @@ header {
     width: 100%;
     height: 40vh;
     background-size: cover;
+  }
+
+}
+
+@media screen and (max-width: 780px) {
+  header{
+    section:first-child {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
   }
 }
