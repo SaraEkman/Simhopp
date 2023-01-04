@@ -16,6 +16,7 @@ import { EditNewsComponent } from './components/news/edit-news/edit-news.compone
 import { DeleteNewsComponent } from './components/news/delete-news/delete-news.component';
 import { DeleteMemberComponent } from './components/admin/delete-member/delete-member.component';
 import { ShowNewsComponent } from './components/news/show-news/show-news.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
@@ -35,7 +36,7 @@ import { ShowNewsComponent } from './components/news/show-news/show-news.compone
     EditNewsComponent,
     DeleteNewsComponent,
     ShowNewsComponent,
-
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
