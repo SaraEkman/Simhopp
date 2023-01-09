@@ -17,9 +17,7 @@ import { DeleteNewsComponent } from './components/news/delete-news/delete-news.c
 import { DeleteMemberComponent } from './components/admin/delete-member/delete-member.component';
 import { ShowNewsComponent } from './components/news/show-news/show-news.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +38,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+     MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
