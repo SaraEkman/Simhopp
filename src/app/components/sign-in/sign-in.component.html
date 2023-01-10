@@ -1,39 +1,41 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row fxLayout="row">
-    <span class="title-center">Registrera dig</span>
-  </mat-toolbar-row>
-</mat-toolbar>
-<mat-dialog-content>
-  <form [formGroup]="signupForm">
-    <label>Registrera dig</label>
-    <div fxFlex fxLayout="column">
-      <mat-form-field>
-        <input matInput placeholder="Användarnamn" formControlName="userName" required>
-        <mat-error
-          *ngIf="signupForm.controls.userName.invalid && (signupForm.controls.userName.dirty ||signupForm.controls.userName.touched)">
-          <span *ngIf="signupForm.controls.userName.errors?.['required']">Namn är obligatoriskt</span>
-          <span *ngIf="signupForm.controls.userName.errors?.['pattern']">Namn är invalid</span>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="userEmail" required>
-        <mat-error
-          *ngIf="signupForm.controls.userEmail.invalid && (signupForm.controls.userEmail.dirty || signupForm.controls.userEmail.touchend)">
-          <span *ngIf="signupForm.controls.userEmail.errors?.['required']">Användarnamn är obligatoriskt</span>
-          <span *ngIf="signupForm.controls.userEmail.errors?.['pattern']">Användarnamn är invalid</span>
-        </mat-error>
-      </mat-form-field>
+<div class="container" >
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">Registrera dig</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-dialog-content>
+    <form [formGroup]="signupForm">
+      <label>Registrera dig</label>
+      <div fxFlex fxLayout="column">
+        <mat-form-field>
+          <input matInput placeholder="Användarnamn" formControlName="userName" required>
+          <mat-error
+            *ngIf="signupForm.controls.userName.invalid && (signupForm.controls.userName.dirty ||signupForm.controls.userName.touched)">
+            <span *ngIf="signupForm.controls.userName.errors?.['required']">Namn är obligatoriskt</span>
+            <span *ngIf="signupForm.controls.userName.errors?.['pattern']">Namn är invalid</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="userEmail" required>
+          <mat-error
+            *ngIf="signupForm.controls.userEmail.invalid && (signupForm.controls.userEmail.dirty || signupForm.controls.userEmail.touchend)">
+            <span *ngIf="signupForm.controls.userEmail.errors?.['required']">Användarnamn är obligatoriskt</span>
+            <span *ngIf="signupForm.controls.userEmail.errors?.['pattern']">Användarnamn är invalid</span>
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Lösenord" formControlName="password" required>
-        <mat-error
-          *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)">
-          <span *ngIf="signupForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
-          <span *ngIf="signupForm.controls.password.errors?.['pattern'] && signupForm.controls.password.errors?.['minlength']">Lösenord är invalid</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
-  </form>
-
-
-</mat-dialog-content>
+        <mat-form-field>
+          <input matInput placeholder="Lösenord" formControlName="password" required>
+          <mat-error
+            *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)">
+            <span *ngIf="signupForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
+            <span
+              *ngIf="signupForm.controls.password.errors?.['pattern'] && signupForm.controls.password.errors?.['minlength']">Lösenord
+              är invalid</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>
