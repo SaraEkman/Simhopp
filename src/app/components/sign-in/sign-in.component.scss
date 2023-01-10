@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  border-radius: 0px 6px 0px 6px;
   &:after,
   > :first-child:after {
     position: absolute;
@@ -9,13 +10,6 @@
     border-style: solid; /* or whatever style */
     content: ' ';
   }
-
-  // &:before {
-  //   top: 0;
-  //   left: 0;
-  //   border-width: 4px 0 0 4px;
-  //   color: #000;
-  // }
   &:after {
     top: 0;
     right: 0;
@@ -23,12 +17,6 @@
     color: #000;
     border-radius: 6px;
   }
-  // > :first-child:before {
-  //   bottom: 0;
-  //   right: 0;
-  //   border-width: 0 4px 4px 0;
-  //   color: #000;
-  // }
   > :first-child:after {
     bottom: 0;
     left: 0;
