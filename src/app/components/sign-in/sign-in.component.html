@@ -1,23 +1,25 @@
-<div class="container" >
+<div class="container">
   <mat-toolbar color="primary">
     <mat-toolbar-row fxLayout="row">
       <span class="title-center">Registrera dig</span>
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-dialog-content>
+  <mat-dialog-content class="mat-typography">
     <form [formGroup]="signupForm">
-      <label>Registrera dig</label>
       <div fxFlex fxLayout="column">
-        <mat-form-field>
-          <input matInput placeholder="Användarnamn" formControlName="userName" required>
+        <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+          <mat-label>Användarnamn</mat-label>
+          <input matInput formControlName="userName" required>
           <mat-error
             *ngIf="signupForm.controls.userName.invalid && (signupForm.controls.userName.dirty ||signupForm.controls.userName.touched)">
             <span *ngIf="signupForm.controls.userName.errors?.['required']">Namn är obligatoriskt</span>
             <span *ngIf="signupForm.controls.userName.errors?.['pattern']">Namn är invalid</span>
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="userEmail" required>
+
+        <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="userEmail" required>
           <mat-error
             *ngIf="signupForm.controls.userEmail.invalid && (signupForm.controls.userEmail.dirty || signupForm.controls.userEmail.touchend)">
             <span *ngIf="signupForm.controls.userEmail.errors?.['required']">Användarnamn är obligatoriskt</span>
@@ -25,8 +27,9 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Lösenord" formControlName="password" required>
+        <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+          <mat-label>Lösenord</mat-label>
+          <input type="password" matInput formControlName="password" required>
           <mat-error
             *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)">
             <span *ngIf="signupForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
@@ -38,4 +41,9 @@
       </div>
     </form>
   </mat-dialog-content>
+  <mat-dialog-actions align="center" class="mat-dialog-action">
+    <button mat-raised-button type="submit" color="primary" (click)="handleSubmit()"
+    [disabled]="!(signupForm.valid && signupForm.dirty)">Registrera</button>
+      <button mat-raised-button color="accent" mat-dialog-close>Avbryt</button>
+  </mat-dialog-actions>
 </div>

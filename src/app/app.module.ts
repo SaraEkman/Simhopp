@@ -17,7 +17,7 @@ import { DeleteNewsComponent } from './components/news/delete-news/delete-news.c
 import { DeleteMemberComponent } from './components/admin/delete-member/delete-member.component'
 import { ShowNewsComponent } from './components/news/show-news/show-news.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule} from '@angular/material/snack-bar'
 import { HttpClientModule } from '@angular/common/http'
 import { MatDialogModule } from '@angular/material/dialog'
 import {
@@ -31,6 +31,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import {MatButtonModule} from '@angular/material/button';
 
 import { CommonModule } from '@angular/common';
 
@@ -38,11 +39,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
   textColor: '#FFFFFF',
   textPosition: 'center-center',
-  pbColor: 'red',
-  bgsColor: 'red',
-  fgsColor: 'red',
-  fgsType: SPINNER.ballSpinClockwise,
-  fgsSize: 200,
+  pbColor: '#ff910d',
+  bgsColor: '#ff910d',
+  fgsColor: '#ff910d',
+  fgsType: "square-jelly-box",
+  fgsSize: 100,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 5,
 }
@@ -78,7 +79,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    CommonModule
+    CommonModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
