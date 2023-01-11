@@ -27,7 +27,6 @@
   .mat-toolbar {
     width: auto;
     margin-bottom: 10px;
-    background-color: #ff910d;
   }
 
   .title-center {
@@ -37,5 +36,6 @@
 
   .mat-form-field {
     padding: 5px;
+    display: block;
   }
 }
