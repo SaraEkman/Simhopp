@@ -34,6 +34,7 @@ import { MatInputModule } from '@angular/material/input'
 import {MatButtonModule} from '@angular/material/button';
 
 import { CommonModule } from '@angular/common';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -65,6 +66,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     DeleteNewsComponent,
     ShowNewsComponent,
     NotFoundComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { SignInComponent } from '../sign-in/sign-in.component'
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component'
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,21 @@ import { SignInComponent } from '../sign-in/sign-in.component'
 export class HeaderComponent {
   constructor(private dialog: MatDialog) {}
 
-  logInAction() {
-    console.log('logInAction')
-  }
   signupAction() {
     console.log('signupAction')
     const dialogConfig = new MatDialogConfig()
-    dialogConfig.width = '500px'
+    dialogConfig.width = '550px'
     this.dialog.open(SignInComponent, dialogConfig)
+  }
+
+  logInAction() {
+    console.log('logInAction')
+  }
+
+  forgotPasswordAction() {
+    console.log('forgotPasswordAction')
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '550px';
+    this.dialog.open(ForgotPasswordComponent, dialogConfig)
   }
 }
