@@ -9,7 +9,7 @@
       <div fxFlex fxLayout="column">
         <mat-form-field appearance="fill" fxFlex class="mat-form-field">
           <mat-label>Användarnamn</mat-label>
-          <input matInput formControlName="userName" required>
+          <input autocomplete matInput formControlName="userName" required>
           <mat-error
             *ngIf="signupForm.controls.userName.invalid && (signupForm.controls.userName.dirty ||signupForm.controls.userName.touched)">
             <span *ngIf="signupForm.controls.userName.errors?.['required']">Namn är obligatoriskt</span>
@@ -19,7 +19,7 @@
 
         <mat-form-field appearance="fill" fxFlex class="mat-form-field">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="userEmail" required>
+          <input autocomplete matInput formControlName="userEmail" required>
           <mat-error
             *ngIf="signupForm.controls.userEmail.invalid && (signupForm.controls.userEmail.dirty || signupForm.controls.userEmail.touchend)">
             <span *ngIf="signupForm.controls.userEmail.errors?.['required']">Användarnamn är obligatoriskt</span>
@@ -29,7 +29,7 @@
 
         <mat-form-field appearance="fill" fxFlex class="mat-form-field">
           <mat-label>Lösenord</mat-label>
-          <input type="password" matInput formControlName="password" required>
+          <input autocomplete type="password" matInput formControlName="password" required>
           <mat-error
             *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)">
             <span *ngIf="signupForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
