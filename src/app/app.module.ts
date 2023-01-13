@@ -18,12 +18,12 @@ import { DeleteMemberComponent } from './components/admin/delete-member/delete-m
 import { ShowNewsComponent } from './components/news/show-news/show-news.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { MatSnackBarModule} from '@angular/material/snack-bar'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { MatDialogModule } from '@angular/material/dialog'
 import {
   NgxUiLoaderModule,
   NgxUiLoaderConfig,
-  SPINNER,
+  // SPINNER,
   PB_DIRECTION,
 } from 'ngx-ui-loader'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -35,6 +35,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { CommonModule } from '@angular/common';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor'
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -82,9 +83,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatFormFieldModule,
     MatInputModule,
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    // FlexLayoutModule,
   ],
-  providers: [],
+  providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
