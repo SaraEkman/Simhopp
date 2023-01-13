@@ -52,7 +52,7 @@ export class LogInComponent {
         this.ngxService.stop()
         this.dialogRef.close()
         localStorage.setItem('token', response.accessToken)
-        this.router.navigate(['/admin/ShowMembers'])
+        this.router.navigate(['/dashboard'])
       },
       (error) => {
         this.ngxService.stop()

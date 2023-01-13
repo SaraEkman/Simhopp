@@ -4,12 +4,17 @@ import { HomeComponent } from './components/home/home.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { GlobalConstants } from './shared/global-constants'
 import { RouteGuardService } from './services/route-guard.service'
+import { ShowMembersComponent } from './components/admin/show-members/show-members.component'
+import { EditMemberComponent } from './components/admin/edit-member/edit-member.component'
+import { AddMemberComponent } from './components/admin/add-member/add-member.component'
+import { DeleteMemberComponent } from './components/admin/delete-member/delete-member.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   // {
-  //   path: 'simhopp',
-  //   component: FullComponent,
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
   //   children: [
   //     {
   //       path: '',
@@ -33,14 +38,47 @@ const routes: Routes = [
   //     },
   //   ],
   // },
-
-  
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [RouteGuardService],
+    data: { expectedRole: [GlobalConstants.admin] },
+  },
+  {
+    path: '',
+    children: [
+      {
+        path: 'admin',
+        component: ShowMembersComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] },
+      },
+      {
+        path: 'admin/editMember',
+        component: EditMemberComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] },
+      },
+      {
+        path: 'admin/addMember',
+        component: AddMemberComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] },
+      },
+      {
+        path: 'admin/deleteMember',
+        component: DeleteMemberComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] },
+      },
+    ],
+  },
 
   { path: '**', component: NotFoundComponent },
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
