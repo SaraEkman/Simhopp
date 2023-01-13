@@ -38,35 +38,33 @@ const routes: Routes = [
   //     },
   //   ],
   // },
+
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [RouteGuardService],
     data: { expectedRole: [GlobalConstants.admin] },
-  },
-  {
-    path: '',
     children: [
       {
-        path: 'admin',
+        path: 'showMembers',
         component: ShowMembersComponent,
         canActivate: [RouteGuardService],
         data: { expectedRole: [GlobalConstants.admin] },
       },
       {
-        path: 'admin/editMember',
+        path: 'editMember',
         component: EditMemberComponent,
         canActivate: [RouteGuardService],
         data: { expectedRole: [GlobalConstants.admin] },
       },
       {
-        path: 'admin/addMember',
+        path: 'addMember',
         component: AddMemberComponent,
         canActivate: [RouteGuardService],
         data: { expectedRole: [GlobalConstants.admin] },
       },
       {
-        path: 'admin/deleteMember',
+        path: 'deleteMember',
         component: DeleteMemberComponent,
         canActivate: [RouteGuardService],
         data: { expectedRole: [GlobalConstants.admin] },
