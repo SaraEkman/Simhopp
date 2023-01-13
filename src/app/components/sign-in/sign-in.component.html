@@ -12,8 +12,8 @@
           <input autocomplete matInput formControlName="userName" required>
           <mat-error
             *ngIf="signupForm.controls.userName.invalid && (signupForm.controls.userName.dirty ||signupForm.controls.userName.touched)">
-            <span *ngIf="signupForm.controls.userName.errors?.['required']">Namn är obligatoriskt</span>
-            <span *ngIf="signupForm.controls.userName.errors?.['pattern']">Namn är invalid</span>
+            <span *ngIf="signupForm.controls.userName.errors?.['required']">Användarnamn är obligatoriskt</span>
+            <span *ngIf="signupForm.controls.userName.errors?.['pattern']">Användarnamn är invalid</span>
           </mat-error>
         </mat-form-field>
 
@@ -22,8 +22,8 @@
           <input autocomplete matInput formControlName="userEmail" required>
           <mat-error
             *ngIf="signupForm.controls.userEmail.invalid && (signupForm.controls.userEmail.dirty || signupForm.controls.userEmail.touchend)">
-            <span *ngIf="signupForm.controls.userEmail.errors?.['required']">Användarnamn är obligatoriskt</span>
-            <span *ngIf="signupForm.controls.userEmail.errors?.['pattern']">Användarnamn är invalid</span>
+            <span *ngIf="signupForm.controls.userEmail.errors?.['required']">Email är obligatoriskt</span>
+            <span *ngIf="signupForm.controls.userEmail.errors?.['pattern']">Email är invalid</span>
           </mat-error>
         </mat-form-field>
 
