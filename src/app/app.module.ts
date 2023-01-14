@@ -38,6 +38,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
   textColor: '#FFFFFF',
@@ -86,6 +88,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatInputModule,
     CommonModule,
     MatButtonModule,
+    AngularEditorModule
     // FlexLayoutModule,
   ],
   providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true }],
