@@ -5,6 +5,7 @@ import { NewsService } from 'src/app/services/news.service'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { NgxUiLoaderService } from 'ngx-ui-loader'
+import { GlobalConstants } from 'src/app/shared/global-constants'
 
 @Component({
   selector: 'app-show-news',
@@ -15,6 +16,7 @@ export class ShowNewsComponent {
   htmlContent: string = ''
   contentForm: any = FormGroup
   responseMessage: any
+  token = localStorage.getItem('token')
 
   config: AngularEditorConfig = {
     editable: true,
@@ -97,43 +99,62 @@ export class ShowNewsComponent {
     // )
   }
 
-  saveNews() {
+  addNews() {
     this.ngxService.start()
     let data = {
       content: this.contentForm.value.content,
       userId: localStorage.getItem('userId'),
     }
     console.log(data)
-
-
+    this.newsService.addNews(data).subscribe(
+      (response: any) => {
+        console.log(response)
+        this.ngxService.stop()
+        this.responseMessage = response?.message
+        this.snackbarService.openSnackBar(this.responseMessage, '')
+        this.router.navigate(['/'])
+      },
+      (error) => {
+        console.log(error)
+        this.ngxService.stop()
+        if (error.error?.message) {
+          this.responseMessage = error?.error?.message
+        } else {
+          this.responseMessage = GlobalConstants.genericError
+        }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
+      })
   }
-
-  //  this.ngxService.start()
-  //   var formaData = this.signupForm.value
-  //   console.log(formaData);
-  //   var data: User = new User(formaData.userName, formaData.userEmail, formaData.password)
-  //   console.log(data);
-  //   this.UserService.signup(data).subscribe(
-  //     (response: any) => {
-  //       console.log(response);
-  //       this.ngxService.stop();
-  //       this.dialogRef.close();
-  //       this.responseMessage = response?.message;
-  //       this.snackbarService.openSnackBar(this.responseMessage, '');
-  //       this.router.navigate(['/'])
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //       this.ngxService.stop()
-  //       if (error.error?.message) {
-  //         this.responseMessage = error?.error?.message
-  //       } else {
-  //         this.responseMessage = GlobalConstants.genericError
-  //       }
-  //       this.snackbarService.openSnackBar(
-  //         this.responseMessage,
-  //         GlobalConstants.error,
-  //       )
-  //     },
-  //   )
 }
+
+//  this.ngxService.start()
+//   var formaData = this.signupForm.value
+//   console.log(formaData);
+//   var data: User = new User(formaData.userName, formaData.userEmail, formaData.password)
+//   console.log(data);
+//   this.UserService.signup(data).subscribe(
+//     (response: any) => {
+//       console.log(response);
+//       this.ngxService.stop();
+//       this.dialogRef.close();
+//       this.responseMessage = response?.message;
+//       this.snackbarService.openSnackBar(this.responseMessage, '');
+//       this.router.navigate(['/'])
+//     },
+//     (error) => {
+//       console.log(error);
+//       this.ngxService.stop()
+//       if (error.error?.message) {
+//         this.responseMessage = error?.error?.message
+//       } else {
+//         this.responseMessage = GlobalConstants.genericError
+//       }
+//       this.snackbarService.openSnackBar(
+//         this.responseMessage,
+//         GlobalConstants.error,
+//       )
+//     },
+//   )

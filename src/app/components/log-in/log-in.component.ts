@@ -52,6 +52,7 @@ export class LogInComponent {
         this.ngxService.stop()
         this.dialogRef.close()
         localStorage.setItem('token', response.accessToken)
+        localStorage.setItem('userId', response.userId)
         this.router.navigate(['/dashboard'])
       },
       (error) => {

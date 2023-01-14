@@ -52,14 +52,10 @@
     </article>
   </section>
 </div>
-<form [formGroup]="contentForm">
+<form *ngIf="token" [formGroup]="contentForm">
   <angular-editor formControlName="content" [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="htmlContent"></angular-editor>
   <h2>
    {{htmlContent}}
   </h2>
-  <button type="submit" (click)="saveNews()">save</button>
+  <button type="submit" (click)="addNews()">save</button>
 </form>
-
-
-<!-- <angular-editor [(ngModel)]="htmlContent" id="editor" [config]="config">
-</angular-editor> -->
