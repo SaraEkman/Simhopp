@@ -69,3 +69,20 @@
     }
   }
 }
+@media screen and (max-width: 768px) {
+  .footerWrapper {
+c:\Users\helle\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\code\electron-sandbox\workbench\workbench.html    section:first-child {
+      article {
+        flex-direction: column;
+        div:first-child {
+          width: 100%;
+        }
+        div:last-child {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
