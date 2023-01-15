@@ -5,14 +5,8 @@
     background-color: #355267;
     padding: 1.5rem 1rem;
     justify-content: center;
-    // align-items: center;
     color: #fff;
     margin-bottom: 1rem;
-    //*:todo: make it responsive
-    // max-width: 1000px;
-    // width: 900px;
-    // min-width: 750px;
-
     img {
       object-fit: cover;
       width: 400px;
@@ -36,9 +30,6 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    // margin-top: 1rem;
-    // max-width: 1000px;
-    // margin: auto;
     flex-wrap: wrap;
     max-width: calc(100vw - 0px);
 
@@ -52,7 +43,6 @@
       width: 32.333333333%;
       padding: 0 10px;
       border-radius: 0px 6px 0px 6px;
-      position: relative;
       overflow: hidden;
       box-sizing: border-box;
       min-height: 400px;
@@ -80,67 +70,23 @@
           }
         }
       }
-
-      &:after,
-      > :first-child:after {
-        position: absolute;
-        width: 80px;
-        height: 80px;
-        border-color: black; /* or whatever colour */
-        border-style: solid; /* or whatever style */
-        content: ' ';
-      }
-      // &:before {
-      //   top: 0;
-      //   left: 0;
-      //   border-width: 4px 0 0 4px;
-      //   color: #000;
-      // }
-
-      &:after {
-        top: 0;
-        right: 0;
-        border-width: 4px 4px 0 0;
-        color: #000;
-        border-radius: 6px;
-      }
-
-      // > :first-child:before {
-      //   bottom: 0;
-      //   right: 0;
-      //   border-width: 0 4px 4px 0;
-      //   color: #000;
-      // }
-
-      > :first-child:after {
-        bottom: 0;
-        left: 0;
-        border-width: 0 0 4px 4px;
-        color: #000;
-        border-radius: 6px;
-      }
     }
   }
 }
 
 @media screen and (max-width: 780px) {
-  div {
+  .news-container {
     .first-news {
       flex-direction: column;
-      // padding: 1rem 1.8rem;
       align-items: center;
-      // justify-content: center;
       padding: 0px;
-      // ! for tablet not so good
       img {
-        width: 360px;
-        min-width: 370px;
+        width: 370px;
+        padding-top: 20px;
       }
       div {
         width: 325px;
         padding-left: 0px;
-        // div {
-        // }
       }
     }
     section {
@@ -149,7 +95,6 @@
         margin: 0 !important;
         height: auto !important;
         min-width: 370px;
-        // max-height: 100%;
         div {
           padding-left: 0;
           max-width: 100%;
