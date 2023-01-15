@@ -39,7 +39,7 @@ export class RouteGuardService {
         }
         this.snackbarService.openSnackBar(GlobalConstants.unauthorized, GlobalConstants.error);
         // TODO: Redirect to unauthorized page     it has '/dashboard' in the url?
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboardMember']);
         return false;
       } else {
         this.router.navigate(['/']);

@@ -4,11 +4,13 @@ import { HomeComponent } from './components/home/home.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
 import { GlobalConstants } from './shared/global-constants'
 import { RouteGuardService } from './services/route-guard.service'
-import { ShowMembersComponent } from './components/admin/show-members/show-members.component'
-import { EditMemberComponent } from './components/admin/edit-member/edit-member.component'
-import { AddMemberComponent } from './components/admin/add-member/add-member.component'
-import { DeleteMemberComponent } from './components/admin/delete-member/delete-member.component'
-import { DashboardComponent } from './components/dashboard/dashboard.component'
+import { ShowMembersComponent } from './components/admin/member/show-members/show-members.component'
+import { EditMemberComponent } from './components/admin/member/edit-member/edit-member.component'
+import { AddMemberComponent } from './components/admin/member/add-member/add-member.component'
+import { DeleteMemberComponent } from './components/admin/member/delete-member/delete-member.component'
+import { DashboardMemberComponent } from './components/dashboard-member/dashboard-member.component'
+import { AllNewsComponent } from './components/admin/news/all-news/all-news.component'
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,8 +42,8 @@ const routes: Routes = [
   // },
 
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'dashboardMember',
+    component: DashboardMemberComponent,
     canActivate: [RouteGuardService],
     data: { expectedRole: [GlobalConstants.admin] },
     children: [
@@ -70,6 +72,39 @@ const routes: Routes = [
         data: { expectedRole: [GlobalConstants.admin] },
       },
     ],
+  },
+
+  {
+    path: 'dashboardNews',
+    component: DashboardMemberComponent,
+    canActivate: [RouteGuardService],
+    data: { expectedRole: [GlobalConstants.admin] },
+    children: [
+      {
+        path: 'showNews',
+        component: AllNewsComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] }
+      },
+      {
+        path: 'editNews',
+        component: EditMemberComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] }
+      },
+      {
+        path: 'addNews',
+        component: AddMemberComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] }
+      },
+      {
+        path: 'deleteNews',
+        component: DeleteMemberComponent,
+        canActivate: [RouteGuardService],
+        data: { expectedRole: [GlobalConstants.admin] }
+      },
+    ]
   },
 
   { path: '**', component: NotFoundComponent },

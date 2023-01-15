@@ -8,16 +8,8 @@ import { HeaderComponent } from './components/header/header.component'
 import { LogInComponent } from './components/log-in/log-in.component'
 import { SignInComponent } from './components/sign-in/sign-in.component'
 import { FooterComponent } from './components/footer/footer.component'
-import { AddMemberComponent } from './components/admin/add-member/add-member.component'
-import { EditMemberComponent } from './components/admin/edit-member/edit-member.component'
-import { ShowMembersComponent } from './components/admin/show-members/show-members.component'
-import { AddNewsComponent } from './components/news/add-news/add-news.component'
-import { EditNewsComponent } from './components/news/edit-news/edit-news.component'
-import { DeleteNewsComponent } from './components/news/delete-news/delete-news.component'
-import { DeleteMemberComponent } from './components/admin/delete-member/delete-member.component'
-import { ShowNewsComponent } from './components/news/show-news/show-news.component'
 import { NotFoundComponent } from './components/not-found/not-found.component'
-import { MatSnackBarModule} from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { MatDialogModule } from '@angular/material/dialog'
 import {
@@ -31,14 +23,28 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button'
 
-import { CommonModule } from '@angular/common';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
-import { DashboardComponent } from './components/dashboard/dashboard.component'
+import { CommonModule } from '@angular/common'
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component'
+import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor'
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DashboardMemberComponent } from './components/dashboard-member/dashboard-member.component'
+import { DashboardNewsComponent } from './components/dashboard-news/dashboard-news.component'
+import { ShowNewsComponent } from './components/show-news/show-news.component'
+import { AddMemberComponent } from './components/admin/member/add-member/add-member.component'
+import { DeleteMemberComponent } from './components/admin/member/delete-member/delete-member.component'
+import { EditMemberComponent } from './components/admin/member/edit-member/edit-member.component'
+import { ShowMembersComponent } from './components/admin/member/show-members/show-members.component'
+import { AddNewsComponent } from './components/admin/news/add-news/add-news.component'
+import { AllNewsComponent } from './components/admin/news/all-news/all-news.component'
+import { DeleteNewsComponent } from './components/admin/news/delete-news/delete-news.component'
+import { EditNewsComponent } from './components/admin/news/edit-news/edit-news.component';
+import { LayoutComponent } from './components/layout/layout.component'
+
+
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -47,7 +53,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbColor: '#ff910d',
   bgsColor: '#ff910d',
   fgsColor: '#ff910d',
-  fgsType: "square-jelly-box",
+  fgsType: 'square-jelly-box',
   fgsSize: 100,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 5,
@@ -61,17 +67,21 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LogInComponent,
     SignInComponent,
     FooterComponent,
-    ShowMembersComponent,
-    AddMemberComponent,
-    EditMemberComponent,
-    DeleteMemberComponent,
-    AddNewsComponent,
-    EditNewsComponent,
-    DeleteNewsComponent,
-    ShowNewsComponent,
     NotFoundComponent,
     ForgotPasswordComponent,
-    DashboardComponent,
+    ShowNewsComponent,
+    DashboardMemberComponent,
+    DashboardNewsComponent,
+    AddMemberComponent,
+    DeleteMemberComponent,
+    EditMemberComponent,
+    ShowMembersComponent,
+    AddNewsComponent,
+    AllNewsComponent,
+    DeleteNewsComponent,
+    EditNewsComponent,
+    LayoutComponent
+
   ],
   imports: [
     BrowserModule,
@@ -88,10 +98,17 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatInputModule,
     CommonModule,
     MatButtonModule,
-    AngularEditorModule
+    AngularEditorModule,
     // FlexLayoutModule,
   ],
-  providers: [HttpClientModule, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true }],
+  providers: [
+    HttpClientModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

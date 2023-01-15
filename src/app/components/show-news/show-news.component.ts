@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { GlobalConstants } from 'src/app/shared/global-constants'
+import { INewsForUser } from 'src/app/modules/news/INewsForUser'
 
 @Component({
   selector: 'app-show-news',
@@ -16,7 +17,15 @@ export class ShowNewsComponent {
   htmlContent: string = ''
   contentForm: any = FormGroup
   responseMessage: any
+  getNewsForUser: INewsForUser[] = []
+  getFirstNewsForUser: INewsForUser = {
+    id: 0,
+    content: '',
+    createDate: new Date(),
+  }
   token = localStorage.getItem('token')
+
+  innerFirstContent = document.getElementById('first-content')
 
   config: AngularEditorConfig = {
     editable: true,
@@ -85,18 +94,27 @@ export class ShowNewsComponent {
     this.contentForm = this.formBuilder.group({
       content: [''],
     })
+    this.ngxService.start()
+    this.newsService.getNews().subscribe(
+      (response: any) => {
+        this.ngxService.stop()
+        this.getNewsForUser = response.map((el: INewsForUser, i: number) => {
+          let date = new Date(el.createDate).toISOString().slice(0, 10)
+          return {
+            ...el,
+            createDate: date,
+          }
+        })
 
-    // this.ngxService.start()
-    // this.newsService.getNews().subscribe(
-    //   (response: any) => {
-    //     this.ngxService.stop()
-    //     this.htmlContent = response?.data?.news;
-    //   },
-    //   (error) => {
-    //     this.ngxService.stop()
-    //     this.snackbarService.openSnackBar(error?.error?.message, '');
-    //   }
-    // )
+        this.getFirstNewsForUser = this.getNewsForUser[0]
+        this.getNewsForUser = this.getNewsForUser.slice(1)
+        console.log('NEWS', this.getNewsForUser[0].content)
+      },
+      (error) => {
+        this.ngxService.stop()
+        this.snackbarService.openSnackBar(error?.error?.message, '')
+      },
+    )
   }
 
   addNews() {
@@ -126,35 +144,8 @@ export class ShowNewsComponent {
           this.responseMessage,
           GlobalConstants.error,
         )
-      })
+      },
+    )
   }
 }
 
-//  this.ngxService.start()
-//   var formaData = this.signupForm.value
-//   console.log(formaData);
-//   var data: User = new User(formaData.userName, formaData.userEmail, formaData.password)
-//   console.log(data);
-//   this.UserService.signup(data).subscribe(
-//     (response: any) => {
-//       console.log(response);
-//       this.ngxService.stop();
-//       this.dialogRef.close();
-//       this.responseMessage = response?.message;
-//       this.snackbarService.openSnackBar(this.responseMessage, '');
-//       this.router.navigate(['/'])
-//     },
-//     (error) => {
-//       console.log(error);
-//       this.ngxService.stop()
-//       if (error.error?.message) {
-//         this.responseMessage = error?.error?.message
-//       } else {
-//         this.responseMessage = GlobalConstants.genericError
-//       }
-//       this.snackbarService.openSnackBar(
-//         this.responseMessage,
-//         GlobalConstants.error,
-//       )
-//     },
-//   )

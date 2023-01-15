@@ -1,0 +1,27 @@
+<div>
+  <article class="first-news">
+    <img src="assets/images/img2.jpg" alt="Medarbetare">
+    <div>
+      <h4 [innerHTML]="getFirstNewsForUser.createDate"></h4>
+      <div [innerHTML]="getFirstNewsForUser.content"></div>
+      <p class="read-first">Läs mer ➝</p>
+    </div>
+  </article>
+  <section>
+    <article *ngFor="let el of getNewsForUser; let i = index;">
+      <div>
+        <img src="assets/images/img3.png" alt="Medarbetare">
+        <div>
+          <h4 [innerHTML]="el.createDate"></h4>
+          <div [innerHTML]="el.content"></div>
+          <p>Läs mer ➝</p>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+<!-- <form *ngIf="token" [formGroup]="contentForm">
+  <angular-editor formControlName="content" [placeholder]="'Enter text here...'" [config]="config"></angular-editor>
+  <button type="submit" (click)="addNews()">save</button>
+</form> -->
+
