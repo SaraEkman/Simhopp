@@ -34,7 +34,7 @@
             *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)">
             <span *ngIf="signupForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
             <span
-              *ngIf="signupForm.controls.password.errors?.['pattern'] && signupForm.controls.password.errors?.['minlength']">Lösenord
+              *ngIf="signupForm.controls.password.errors?.['minlength']">Lösenord
               är invalid</span>
           </mat-error>
         </mat-form-field>

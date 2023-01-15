@@ -51,10 +51,16 @@ export class LogInComponent {
         console.log(response)
         this.ngxService.stop()
         this.dialogRef.close()
-        localStorage.setItem('token', response.accessToken)
         localStorage.setItem('userId', response.userId)
+        if (response.accessToken) {
+          localStorage.setItem('token', response.accessToken)
+        } else {
+          localStorage.setItem('userEmail', response.userEmail)
+          this.responseMessage = response?.message
+          this.snackbarService.openSnackBar(this.responseMessage, '')
+        }
         // this.router.navigate(['/dashboardMember'])
-        this.router.navigate(['/admin']);
+        // this.router.navigate(['/admin']);
       },
       (error) => {
         this.ngxService.stop()

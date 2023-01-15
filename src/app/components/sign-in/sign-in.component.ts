@@ -37,7 +37,7 @@ export class SignInComponent {
         null,
         [Validators.required, Validators.pattern(GlobalConstants.emailRegex)]
       ],
-      password: [null, [Validators.required, Validators.pattern(GlobalConstants.passwordRegex), Validators.minLength(6)]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
     })
   }
 
