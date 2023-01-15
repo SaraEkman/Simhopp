@@ -33,4 +33,10 @@ export class UserService {
     })
   }
 
+  changeUserEmail(data: any) {
+    return this.httpClient.post(`${GlobalConstants.url}/users/changeUserEmail`, data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    })
+  }
+
 }

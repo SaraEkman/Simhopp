@@ -1,0 +1,42 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+      <span class="title-center">Ändra email</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="changeUserEmailForm">
+      <div fxFlex fxLayout="column">
+        <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+          <mat-label>Ny Email</mat-label>
+          <input matInput autocomplete formControlName="newUserEmail" required>
+          <mat-error
+            *ngIf="changeUserEmailForm.controls.newUserEmail.invalid && (changeUserEmailForm.controls.newUserEmail.dirty ||changeUserEmailForm.controls.newUserEmail.touched)">
+            <span *ngIf="changeUserEmailForm.controls.newUserEmail.errors?.['required']">Ny email är obligatoriskt</span>
+            <span *ngIf="changeUserEmailForm.controls.newUserEmail.errors?.['pattern']">Email är invalid</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+          <mat-label>Lösenord</mat-label>
+          <input autocomplete matInput placeholder="Lösenord" formControlName="password" type="password" required>
+          <mat-error
+            *ngIf="changeUserEmailForm.controls.password.invalid && (changeUserEmailForm.controls.password.dirty || changeUserEmailForm.controls.password.touched)">
+            <span *ngIf="changeUserEmailForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
+            <span
+              *ngIf="changeUserEmailForm.controls.password.errors?.['minlength']">Lösenord
+              är invalid</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+      [disabled]="!(changeUserEmailForm.valid && changeUserEmailForm.dirty)">Logga in</button>
+    <button mat-raised-button color="accent" mat-dialog-close>Avbryt</button>
+  </mat-dialog-actions>
+
+</div>

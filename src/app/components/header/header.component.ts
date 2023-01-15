@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { SignInComponent } from '../sign-in/sign-in.component'
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component'
 import { LogInComponent } from '../log-in/log-in.component'
+import { ChangeUseremailComponent } from '../change-useremail/change-useremail.component'
 
 @Component({
   selector: 'app-header',
@@ -31,5 +32,11 @@ export class HeaderComponent {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px';
     this.dialog.open(ForgotPasswordComponent, dialogConfig)
+  }
+  changeUserEmailAction() {
+    console.log('changeUserEmailAction')
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '550px';
+    this.dialog.open(ChangeUseremailComponent, dialogConfig)
   }
 }

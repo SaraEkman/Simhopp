@@ -41,7 +41,8 @@ import { AddNewsComponent } from './components/admin/news/add-news/add-news.comp
 import { AllNewsComponent } from './components/admin/news/all-news/all-news.component'
 import { DeleteNewsComponent } from './components/admin/news/delete-news/delete-news.component'
 import { EditNewsComponent } from './components/admin/news/edit-news/edit-news.component';
-import { LayoutComponent } from './components/layout/layout.component'
+import { LayoutComponent } from './components/layout/layout.component';
+import { ChangeUseremailComponent } from './components/change-useremail/change-useremail.component'
 
 
 
@@ -80,7 +81,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AllNewsComponent,
     DeleteNewsComponent,
     EditNewsComponent,
-    LayoutComponent
+    LayoutComponent,
+    ChangeUseremailComponent
 
   ],
   imports: [
