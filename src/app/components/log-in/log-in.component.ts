@@ -59,6 +59,9 @@ export class LogInComponent {
           this.responseMessage = response?.message
           this.snackbarService.openSnackBar(this.responseMessage, '')
         }
+        setTimeout(() => {
+          window.location.reload()
+        }, 5000);
         // this.router.navigate(['/dashboardMember'])
         // this.router.navigate(['/admin']);
       },

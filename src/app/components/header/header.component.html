@@ -1,7 +1,7 @@
 <header>
   <section>
     <article>
-       <a routerLink="/" ><img src="assets/images/logoMobile.png" alt="Simhopp logo"></a>
+      <a routerLink="/"><img src="assets/images/logoMobile.png" alt="Simhopp logo"></a>
       <h1>Stockholmspolisens IF Simhopp</h1>
     </article>
     <article>
@@ -73,7 +73,7 @@
         <li><a (click)="logInAction()">Logga in</a></li>
         <li><a (click)="signUpAction()">registega dig</a></li>
         <li><a (click)="forgotPasswordAction()">Glömd lösenord?</a></li>
-        <li><a (click)="changeUserEmailAction()">Ändra Email</a></li>
+        <li *ngIf="CheckUserLogin"><a (click)="changeUserEmailAction()">Ändra Email?</a></li>
       </ul>
       <!-- <button (click)="logInAction()">
          Logga in

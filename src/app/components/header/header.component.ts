@@ -12,6 +12,12 @@ import { ChangeUseremailComponent } from '../change-useremail/change-useremail.c
 })
 export class HeaderComponent {
   constructor(private dialog: MatDialog) {}
+  CheckUserLogin: boolean = false
+  ngOnInit(): void {
+    if (localStorage.getItem('userEmail') != null) {
+      this.CheckUserLogin = true
+    }
+  }
 
   signUpAction() {
     console.log('signupAction')
@@ -30,13 +36,13 @@ export class HeaderComponent {
   forgotPasswordAction() {
     console.log('forgotPasswordAction')
     const dialogConfig = new MatDialogConfig()
-    dialogConfig.width = '550px';
+    dialogConfig.width = '550px'
     this.dialog.open(ForgotPasswordComponent, dialogConfig)
   }
   changeUserEmailAction() {
     console.log('changeUserEmailAction')
     const dialogConfig = new MatDialogConfig()
-    dialogConfig.width = '550px';
+    dialogConfig.width = '550px'
     this.dialog.open(ChangeUseremailComponent, dialogConfig)
   }
 }
