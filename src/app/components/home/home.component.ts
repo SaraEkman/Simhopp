@@ -20,7 +20,9 @@ export class HomeComponent {
       this.userService.checkToken().subscribe(
         (response: any) => {
           console.log(response)
-          this.router.navigate(['/dashboardMember'])
+          this.router.navigate(['/admin'])
+          // this.router.navigate(['/dashboardMember'])
+          // this.router.navigate(['/dashboardNews'])
         },
         (error) => {
           console.log(error)

@@ -10,6 +10,7 @@ import { AddMemberComponent } from './components/admin/member/add-member/add-mem
 import { DeleteMemberComponent } from './components/admin/member/delete-member/delete-member.component'
 import { DashboardMemberComponent } from './components/dashboard-member/dashboard-member.component'
 import { AllNewsComponent } from './components/admin/news/all-news/all-news.component'
+import { LayoutComponent } from './components/layout/layout.component'
 
 
 const routes: Routes = [
@@ -40,6 +41,15 @@ const routes: Routes = [
   //     },
   //   ],
   // },
+
+  {
+    path: 'admin',
+    component: LayoutComponent,
+    canActivate: [RouteGuardService],
+    data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
+
+  },
+
 
   {
     path: 'dashboardMember',
