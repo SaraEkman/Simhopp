@@ -113,11 +113,19 @@ $Simhopp-theme: mat.define-light-theme(
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.primary-button {
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  border: 1px solid #ccc;
+  background-color: #ff910d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .container {
   position: relative;
   border-radius: 0px 6px 0px 6px;
