@@ -1,7 +1,7 @@
 <div class="footerWrapper">
   <section>
     <article>
-      <img src="assets/images/6.png" alt="sportAdmin">
+      <div><img src="assets/images/6.png" alt="sportAdmin"></div>
       <div>
         <h3>Ladda ner våra app </h3>
         <ul>
@@ -11,11 +11,13 @@
           <li>Genomförda betalningar samt obetalda fakturor</li>
           <li>Medlemskort</li>
         </ul>
-        <button>Ladda ner appen ➝</button>
+        <button (click)="downloadSportAdmin()">Ladda ner appen ➝</button>
       </div>
     </article>
     <article>
-      <img src="assets/images/logoLarge.png" alt="Logo">
+      <div>
+        <img class="logo-large" src="assets/images/logoLarge.png" alt="Logo">
+      </div>
       <div>
         <h3>Bli supportermedlem</h3>
         <ul>
@@ -25,7 +27,7 @@
             självkostnadspris.</li>
           <li>Glädjen att följa och vara medlem i en av Sveriges bästa simhoppsföreningar!</li>
         </ul>
-        <button>Bli supportermedlem ➝</button>
+        <button (click)="supportMember()">Bli supportermedlem ➝</button>
       </div>
     </article>
   </section>
@@ -38,7 +40,9 @@
       <div><img src="assets/images/4.png" alt="Jur Skogs"></div>
       <div><img src="assets/images/5.png" alt="Profilskaparen"></div>
     </article>
-    <article>
+    <hr>
+    <article class="socials">
+
       <div>
         <h4>Öppettider</h4>
         <p>Vardagar: 9-20</p>
@@ -57,6 +61,7 @@
         <p>info@polisensimhopp.se</p>
       </div>
     </article>
+    <hr>
     <article>
       <a href="https://www.facebook.com/">
         <img src="assets/images/svg_facebook.svg" alt="facebook">

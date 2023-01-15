@@ -1,14 +1,71 @@
 .footerWrapper {
-  background-color: #f5f5f5;
   padding: 20px 0;
-  text-align: center;
   font-size: 12px;
-  color: #999;
-  a {
-    color: #999;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  section:first-child {
+    article {
+      display: flex;
+      margin-bottom: 1rem;
+      padding: 2rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+
+      div:first-child {
+        width: 50%;
+        text-align: center;
+      }
+
+      div:last-child {
+        width: 50%;
+      }
+
+      button {
+        margin-bottom: 10px;
+        padding: 5px 20px;
+        margin-left: 20px;
+        border: 1px solid #ccc;
+        background-color: #ff910d;
+        font-weight: bold;
+      }
+    }
+  }
+  hr {
+    border: none;
+    height: 1px;
+    color: #ccc;
+    background-color: #ccc;
+    text-align: left;
+    width: 85%;
+  }
+
+  section:last-child {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    article {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      padding: 1rem;
+      border-radius: 5px;
+      flex-wrap: wrap;
+    }
+    .socials{
+      gap: 2rem;
+        div:last-child {
+          margin-top: -24px;
+        }
+    }
+    article:last-child {
+      gap: 1rem;
     }
   }
 }
