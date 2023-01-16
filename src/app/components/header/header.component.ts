@@ -45,4 +45,10 @@ export class HeaderComponent {
     dialogConfig.width = '550px'
     this.dialog.open(ChangeUseremailComponent, dialogConfig)
   }
+
+  loggOutAction() {
+    console.log('loggOutAction')
+    localStorage.clear()
+    this.CheckUserLogin = false
+  }
 }
