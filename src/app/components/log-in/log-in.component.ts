@@ -61,7 +61,7 @@ export class LogInComponent {
         }
         setTimeout(() => {
           window.location.reload()
-        }, 5000);
+        }, 4000);
         // this.router.navigate(['/dashboardMember'])
         // this.router.navigate(['/admin']);
       },
