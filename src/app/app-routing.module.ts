@@ -84,8 +84,8 @@ const routes: Routes = [
       {
         path: 'adminNews',
         loadChildren: () =>
-          import('./').then(
-            (m) => m.AdminUsersModule,
+          import('./modules/admin-news/admin-news.module').then(
+            (m) => m.AdminNewsModule,
           ),
         canActivate: [RouteGuardService],
         data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
