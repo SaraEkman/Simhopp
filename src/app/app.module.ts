@@ -30,21 +30,10 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor'
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { DashboardMemberComponent } from './components/dashboard-member/dashboard-member.component'
-import { DashboardNewsComponent } from './components/dashboard-news/dashboard-news.component'
 import { ShowNewsComponent } from './components/show-news/show-news.component'
-import { AddMemberComponent } from './components/admin/member/add-member/add-member.component'
-import { DeleteMemberComponent } from './components/admin/member/delete-member/delete-member.component'
-import { EditMemberComponent } from './components/admin/member/edit-member/edit-member.component'
-import { ShowMembersComponent } from './components/admin/member/show-members/show-members.component'
-import { AddNewsComponent } from './components/admin/news/add-news/add-news.component'
-import { AllNewsComponent } from './components/admin/news/all-news/all-news.component'
-import { DeleteNewsComponent } from './components/admin/news/delete-news/delete-news.component'
-import { EditNewsComponent } from './components/admin/news/edit-news/edit-news.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { ChangeUseremailComponent } from './components/change-useremail/change-useremail.component'
-
-
+import { ChangeUseremailComponent } from './components/change-useremail/change-useremail.component';
+import { UsersDashboardComponent } from './components/adminUsers/users-dashboard/users-dashboard.component';
+import { NewsDashboardComponent } from './components/adminNews/news-dashboard/news-dashboard.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -71,19 +60,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NotFoundComponent,
     ForgotPasswordComponent,
     ShowNewsComponent,
-    DashboardMemberComponent,
-    DashboardNewsComponent,
-    AddMemberComponent,
-    DeleteMemberComponent,
-    EditMemberComponent,
-    ShowMembersComponent,
-    AddNewsComponent,
-    AllNewsComponent,
-    DeleteNewsComponent,
-    EditNewsComponent,
-    LayoutComponent,
-    ChangeUseremailComponent
-
+    ChangeUseremailComponent,
+    UsersDashboardComponent,
+    NewsDashboardComponent,
   ],
   imports: [
     BrowserModule,

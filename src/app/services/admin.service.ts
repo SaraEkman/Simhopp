@@ -13,4 +13,11 @@ export class AdminService {
   getMembers() {
     return this.HttpClient.get(`${GlobalConstants.url}/users/get`)
   }
+
+
+
+
+  getNews() {
+    return this.HttpClient.get(`${GlobalConstants.url}/news/get`)
+  }
 }
