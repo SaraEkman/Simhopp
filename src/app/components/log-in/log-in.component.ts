@@ -59,12 +59,12 @@ export class LogInComponent {
         if (response.accessToken) {
           localStorage.setItem('token', response.accessToken)
           this.responseMessage = response?.message
-          this.snackbarService.openSnackBar(this.responseMessage, '')
         } else {
           localStorage.setItem('userEmail', response.userEmail)
           this.responseMessage = response?.message
-          this.snackbarService.openSnackBar(this.responseMessage, '')
         }
+        this.snackbarService.openSnackBar(this.responseMessage, '')
+        window.location.reload()
         // :FIXME: This is a temporary solution. We need to redirect to the page the user was on before logging in.
         // this.router.navigate(['/dashboardMember'])
         // this.router.navigate(['/admin']);

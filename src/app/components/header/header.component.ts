@@ -19,7 +19,7 @@ export class HeaderComponent {
     if (localStorage.getItem('token') != null) {
       this.CheckAdminLogin = true
       this.CheckUserLogin = false
-    } else if (localStorage.getItem('token') == null) {
+    } else if (localStorage.getItem('userEmail') != null) {
       this.CheckUserLogin = true
       this.CheckAdminLogin = false
     } else {
@@ -40,23 +40,7 @@ export class HeaderComponent {
     console.log('logInAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px'
-    let dialogRefData = this.dialog.open(LogInComponent, dialogConfig)
-    // dialogRefData.afterClosed().subscribe((data) => {
-    //   console.log(data)
-    //   if (data.data == 'AdminIsLoggedI' && data.data != 'UserIsLoggedI') {
-    //     console.log('AdminIsLoggedI', data)
-    //     console.log('AdminIsLoggedI', data.data)
-    //     this.CheckAdminLogin = true
-    //     this.CheckUserLogin = false
-
-    //   } else if (data.data == 'UserIsLoggedI' && data.data != 'AdminIsLoggedI') {
-    //     console.log('UserIsLoggedI', data)
-    //     console.log('UserIsLoggedI', data.data)
-    //     this.CheckUserLogin = true
-    //     this.CheckAdminLogin = false
-
-    //   }
-    // })
+    this.dialog.open(LogInComponent, dialogConfig)
   }
 
   forgotPasswordAction() {
@@ -76,6 +60,7 @@ export class HeaderComponent {
     console.log('loggOutAction')
     localStorage.clear()
     this.CheckUserLogin = false
+    this.CheckAdminLogin = false
   }
 
   adminDashboardAction() {

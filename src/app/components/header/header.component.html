@@ -71,7 +71,7 @@
       <input type="text" placeholder="Sök" />
       <ul>
         <li><a *ngIf="(!CheckUserLogin && !CheckAdminLogin)" (click)="logInAction()">Logga in</a></li>
-        <li><a *ngIf="(!CheckUserLogin && !CheckAdminLogin) " (click)="signUpAction()">registega dig</a></li>
+        <li><a *ngIf="(!CheckUserLogin && !CheckAdminLogin)" (click)="signUpAction()">registega dig</a></li>
         <li><a *ngIf="(!CheckUserLogin && !CheckAdminLogin)" (click)="forgotPasswordAction()">Glömd lösenord?</a></li>
         <li *ngIf="CheckUserLogin"><a (click)="changeUserEmailAction()">Ändra Email?</a></li>
         <li *ngIf="CheckAdminLogin"><a (click)="adminDashboardAction()">Admin Dashboard</a></li>
