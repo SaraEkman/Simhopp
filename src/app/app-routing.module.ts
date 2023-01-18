@@ -37,7 +37,7 @@ const routes: Routes = [
   //   ],
   // },
   {
-    path: 'usersDashboard',
+    path: 'users-dashboard',
     component: UsersDashboardComponent,
     children: [
       {
@@ -54,7 +54,7 @@ const routes: Routes = [
       //   data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
       // },
       {
-        path: 'adminNews',
+        path: 'adminUsers',
         loadChildren: () =>
           import('./modules/admin-users/admin-users.module').then(
             (m) => m.AdminUsersModule,
@@ -65,7 +65,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'newsDashboard',
+    path: 'news-dashboard',
     component: NewsDashboardComponent,
     children: [
       {

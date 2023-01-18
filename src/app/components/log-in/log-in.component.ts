@@ -42,6 +42,10 @@ export class LogInComponent {
     })
   }
 
+  // ngOnDestroy() {
+
+  // }
+
   handleSubmit() {
     this.ngxService.start()
     var formaData = this.loginForm.value
@@ -54,14 +58,14 @@ export class LogInComponent {
         localStorage.setItem('userId', response.userId)
         if (response.accessToken) {
           localStorage.setItem('token', response.accessToken)
+          this.responseMessage = response?.message
+          this.snackbarService.openSnackBar(this.responseMessage, '')
         } else {
           localStorage.setItem('userEmail', response.userEmail)
           this.responseMessage = response?.message
           this.snackbarService.openSnackBar(this.responseMessage, '')
         }
-        setTimeout(() => {
-          window.location.reload()
-        }, 4000);
+        // :FIXME: This is a temporary solution. We need to redirect to the page the user was on before logging in.
         // this.router.navigate(['/dashboardMember'])
         // this.router.navigate(['/admin']);
       },

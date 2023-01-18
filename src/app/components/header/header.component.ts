@@ -4,6 +4,7 @@ import { SignInComponent } from '../sign-in/sign-in.component'
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component'
 import { LogInComponent } from '../log-in/log-in.component'
 import { ChangeUseremailComponent } from '../change-useremail/change-useremail.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -11,12 +12,21 @@ import { ChangeUseremailComponent } from '../change-useremail/change-useremail.c
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private router: Router) {}
   CheckUserLogin: boolean = false
+  CheckAdminLogin: boolean = false
   ngOnInit(): void {
-    if (localStorage.getItem('userEmail') != null) {
+    if (localStorage.getItem('token') != null) {
+      this.CheckAdminLogin = true
+      this.CheckUserLogin = false
+    } else if (localStorage.getItem('token') == null) {
       this.CheckUserLogin = true
+      this.CheckAdminLogin = false
+    } else {
+      this.CheckUserLogin = false
+      this.CheckAdminLogin = false
     }
+
   }
 
   signUpAction() {
@@ -30,7 +40,23 @@ export class HeaderComponent {
     console.log('logInAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px'
-    this.dialog.open(LogInComponent, dialogConfig)
+    let dialogRefData = this.dialog.open(LogInComponent, dialogConfig)
+    // dialogRefData.afterClosed().subscribe((data) => {
+    //   console.log(data)
+    //   if (data.data == 'AdminIsLoggedI' && data.data != 'UserIsLoggedI') {
+    //     console.log('AdminIsLoggedI', data)
+    //     console.log('AdminIsLoggedI', data.data)
+    //     this.CheckAdminLogin = true
+    //     this.CheckUserLogin = false
+
+    //   } else if (data.data == 'UserIsLoggedI' && data.data != 'AdminIsLoggedI') {
+    //     console.log('UserIsLoggedI', data)
+    //     console.log('UserIsLoggedI', data.data)
+    //     this.CheckUserLogin = true
+    //     this.CheckAdminLogin = false
+
+    //   }
+    // })
   }
 
   forgotPasswordAction() {
@@ -50,5 +76,10 @@ export class HeaderComponent {
     console.log('loggOutAction')
     localStorage.clear()
     this.CheckUserLogin = false
+  }
+
+  adminDashboardAction() {
+    console.log('adminDashboardAction')
+    this.router.navigate(['/users-dashboard'])
   }
 }
