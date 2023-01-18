@@ -1,56 +1,58 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { AuthService } from './auth.service';
-import { SnackbarService } from 'src/app/services/snackbar.service';
-import jwt_decode from 'jwt-decode';
-import { GlobalConstants } from 'src/app/shared/global-constants';
+import { Injectable } from '@angular/core'
+import { ActivatedRouteSnapshot, Router } from '@angular/router'
+import { AuthService } from './auth.service'
+import { SnackbarService } from 'src/app/services/snackbar.service'
+import jwt_decode from 'jwt-decode'
+import { GlobalConstants } from 'src/app/shared/global-constants'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RouteGuardService {
-
-  constructor(public auth: AuthService, public router: Router, private snackbarService: SnackbarService) {
-  }
+  constructor(
+    public auth: AuthService,
+    public router: Router,
+    private snackbarService: SnackbarService,
+  ) {}
   canActivate(route: ActivatedRouteSnapshot): any {
-    let expectedRoleArray:any = route.data;
-    expectedRoleArray = expectedRoleArray.expectedRole;
+    let expectedRoleArray: any = route.data
+    expectedRoleArray = expectedRoleArray.expectedRole
 
-    const token: any = localStorage.getItem('token');
-    var tokenPayload: any;
+    const token: any = localStorage.getItem('token')
+    var tokenPayload: any
     try {
-      tokenPayload = jwt_decode(token);
+      tokenPayload = jwt_decode(token)
     } catch (Error) {
-      localStorage.clear();
-      this.router.navigate(['/']);
+      localStorage.clear()
+      this.router.navigate(['/'])
     }
 
     let checkRole = false
     for (let index = 0; index < expectedRoleArray.length; index++) {
       if (tokenPayload.role == expectedRoleArray[index]) {
-        checkRole = true;
+        checkRole = true
       }
     }
 
-    if (tokenPayload.role == GlobalConstants.user || tokenPayload.role == GlobalConstants.admin) {
+    if (
+      tokenPayload.role == GlobalConstants.user ||
+      tokenPayload.role == GlobalConstants.admin
+    ) {
       if (checkRole) {
         if (this.auth.isAuthenticated() && checkRole) {
-         return true;
+          return true
         }
-        this.snackbarService.openSnackBar(GlobalConstants.unauthorized, GlobalConstants.error);
-        // TODO: Redirect to unauthorized page     it has '/dashboard' in the url?
-        // this.router.navigate(['/dashboardMember']);
-        this.router.navigate(['/admin']);
-        return false;
+        this.snackbarService.openSnackBar(
+          GlobalConstants.unauthorized,
+          GlobalConstants.error,
+        )
+        this.router.navigate(['/dashboard'])
+        return false
       } else {
-        this.router.navigate(['/']);
-        localStorage.clear();
-        return false;
+        this.router.navigate(['/'])
+        localStorage.clear()
+        return false
       }
-
-
-
     }
-
   }
 }

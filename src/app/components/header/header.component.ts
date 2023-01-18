@@ -65,6 +65,6 @@ export class HeaderComponent {
 
   adminDashboardAction() {
     console.log('adminDashboardAction')
-    this.router.navigate(['/users-dashboard'])
+    this.router.navigate(['/dashboard'])
   }
 }

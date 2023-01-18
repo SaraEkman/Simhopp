@@ -32,8 +32,6 @@ import { TokenInterceptorInterceptor } from './services/token-interceptor.interc
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ShowNewsComponent } from './components/show-news/show-news.component'
 import { ChangeUseremailComponent } from './components/change-useremail/change-useremail.component';
-import { UsersDashboardComponent } from './components/adminUsers/users-dashboard/users-dashboard.component';
-import { NewsDashboardComponent } from './components/adminNews/news-dashboard/news-dashboard.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -61,8 +59,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ForgotPasswordComponent,
     ShowNewsComponent,
     ChangeUseremailComponent,
-    UsersDashboardComponent,
-    NewsDashboardComponent,
   ],
   imports: [
     BrowserModule,
