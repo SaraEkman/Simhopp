@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<body>
+  <mat-card>
+    <b><span>News Dashboard</span></b>
+  </mat-card>
+  <br>
+
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <div> <!--class="container" -->
+          <h2 class="title">Total News</h2>
+          <h1 class="title">{{news?.length}}</h1>
+         <button class="button" [routerLink]="['/showNews']">View News</button>
+        </div>
+        <div>
+          <h2>Total Members</h2>
+          <h1>{{member?.length}}</h1>
+          <button class="button" [routerLink]="['/showMember']">View Members</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>

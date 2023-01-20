@@ -55,7 +55,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./modules/admin/admin.module').then(
+          import('./components/admin/admin.module').then(
             (m) => m.AdminModule,
           ),
         canActivate: [RouteGuardService],
