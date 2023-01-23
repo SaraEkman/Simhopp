@@ -1,0 +1,107 @@
+import { Component } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { Router } from '@angular/router'
+import { NgxUiLoaderService } from 'ngx-ui-loader'
+import { AdminService } from 'src/app/services/admin.service'
+import { SnackbarService } from 'src/app/services/snackbar.service'
+import { GlobalConstants } from 'src/app/shared/global-constants'
+import { MatTableDataSource } from '@angular/material/table'
+
+@Component({
+  selector: 'app-show-news',
+  templateUrl: './show-news.component.html',
+  styleUrls: ['./show-news.component.scss'],
+})
+export class ShowNewsComponent {
+  displayedColumns: string[] = [
+    'id',
+    'content',
+    'userName',
+    'createDate',
+    'actions',
+  ]
+  responseMessage: any
+  newsList: any
+  dataSource: any
+  constructor(
+    private adminService: AdminService,
+    private ngxService: NgxUiLoaderService,
+    private snackbarService: SnackbarService,
+    private router: Router,
+    private dialog: MatDialog,
+  ) {
+    this.ngxService.start()
+    this.getNews()
+    // console.log(this.dataSource)
+  }
+  getNews() {
+    this.adminService.getNews().subscribe(
+      (response: any) => {
+        console.log(response)
+        this.ngxService.stop()
+        this.newsList = response.map((el: any, i: number) => {
+          let date = new Date(el.createDate).toISOString().slice(0, 10)
+          return {
+            ...el,
+            createDate: date,
+          }
+        })
+        this.dataSource = new MatTableDataSource(this.newsList)
+        console.log(this.dataSource)
+      },
+      (error: any) => {
+        this.ngxService.stop()
+        console.log(error)
+        if (error.error?.message) {
+          this.responseMessage = error.error?.message
+        } else {
+          this.responseMessage = GlobalConstants.genericError
+        }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
+      },
+    )
+  }
+
+  applyFilter(event: Event) {
+    // console.log(event)
+    const filterValue = (event.target as HTMLInputElement).value
+    this.dataSource.filter = filterValue.trim().toLowerCase()
+  }
+
+  handleAddAction() {}
+
+  editNewsAction(el: any) {
+    // this.router.navigate(['/admin/edit-news', ])
+  }
+
+  deleteNewsAction(id: any) {
+    this.ngxService.start()
+    // this.adminService.deleteNews(id).subscribe(
+    //   (response: any) => {
+    //     this.ngxService.stop()
+    //     this.responseMessage = response.message
+    //     this.snackbarService.openSnackBar(
+    //       this.responseMessage,
+    //       GlobalConstants.success,
+    //     )
+    //     this.getNews()
+    //   },
+    //   (error: any) => {
+    //     this.ngxService.stop()
+    //     console.log(error)
+    //     if (error.error?.message) {
+    //       this.responseMessage = error.error?.message
+    //     } else {
+    //       this.responseMessage = GlobalConstants.genericError
+    //     }
+    //     this.snackbarService.openSnackBar(
+    //       this.responseMessage,
+    //       GlobalConstants.error,
+    //     )
+    //   },
+    // )
+  }
+}

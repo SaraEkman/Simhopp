@@ -5,6 +5,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component'
 import { GlobalConstants } from './shared/global-constants'
 import { RouteGuardService } from './services/route-guard.service'
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component'
+import { ShowNewsComponent } from './components/admin/show-news/show-news.component'
+import { ShowMembersComponent } from './components/admin/show-members/show-members.component'
+import { SidebarComponent } from './components/admin/sidebar/sidebar.component'
 
 
 const routes: Routes = [
@@ -51,6 +54,19 @@ const routes: Routes = [
       //       (m) => m.MaterialComponentsModule),
       //   canActivate: [RouteGuardService],
       //   data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
+      // },
+      // {
+      //   path: 'sidebar',
+      //   component: SidebarComponent
+      // },
+
+      // {
+      //   path: 'show-news',
+      //   component: ShowNewsComponent,
+      // },
+      // {
+      //   path: 'show-members',
+      //   component: ShowMembersComponent,
       // },
       {
         path: '',

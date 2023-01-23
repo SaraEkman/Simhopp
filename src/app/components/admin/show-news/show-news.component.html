@@ -1,0 +1,44 @@
+<mat-card>
+  <b><span>News</span></b>
+  <button mat-flat-button color="primary" class="add-news-btn" (click)="handleAddAction()">Lägg till en ny news</button>
+</mat-card>
+<mat-card>
+  <mat-form-field appearance="fill">
+    <mat-label>Sök</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+</mat-card>
+<div class="responsive-table">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef>Innehåll</th>
+      <td mat-cell *matCellDef="let element" [innerHTML]="element.content"></td>
+    </ng-container>
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef>Forfattare</th>
+      <td mat-cell *matCellDef="let element">{{element.userName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="createDate">
+      <th mat-header-cell *matHeaderCellDef>Skapad</th>
+      <td mat-cell *matCellDef="let element">{{element.createDate}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon color="primary" matTooltip="Edit" (click)="editNewsAction(element)">
+          <mat-icon>redigera</mat-icon>
+        </button>
+        <button mat-icon color="warn" matTooltip="Delete" (click)="deleteNewsAction(element.id)">
+          <mat-icon>ta bort</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>

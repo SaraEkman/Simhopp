@@ -1,0 +1,14 @@
+<mat-dialog-content class="mat-typography">
+  <h5>
+    Är du säker på att du vill {{details.message}}?
+  </h5>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="handleChangeAction()">
+    Ja
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    Nej
+  </button>
+</mat-dialog-actions>

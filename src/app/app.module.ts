@@ -34,6 +34,7 @@ import { ShowNewsComponent } from './components/show-news/show-news.component'
 import { ChangeUseremailComponent } from './components/change-useremail/change-useremail.component';
 
 
+
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
   textColor: '#FFFFFF',

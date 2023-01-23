@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { LogInComponent } from '../log-in/log-in.component'
 import { ChangeUseremailComponent } from '../change-useremail/change-useremail.component'
 import { Router } from '@angular/router'
+import { ConfirmationComponent } from '../admin/confirmation/confirmation.component'
 
 @Component({
   selector: 'app-header',

@@ -13,12 +13,6 @@ export class NewsService {
     return this.httpClient.get(`${GlobalConstants.url}/news`);
   }
 
-  getNewsForAdmin(token: any) {
-    return this.httpClient.get(`${GlobalConstants.url}/news/get`, {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token),
-    })
-  }
-
   getNewsById(id: any) {
     return this.httpClient.get(`${GlobalConstants.url}/news/get/${id}`);
   }
