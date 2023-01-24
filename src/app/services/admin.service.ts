@@ -22,7 +22,7 @@ export class AdminService {
     })
   }
   updateNews(data: any) {
-    return this.HttpClient.patch(`${GlobalConstants.url}/news/add`, data, {
+    return this.HttpClient.patch(`${GlobalConstants.url}/news/update`, data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     })
   }

@@ -59,14 +59,17 @@ export class AddNewsComponent {
   handleSubmit() {
     if (this.dialogAction === 'Edit') {
       this.edit()
-    } else {
+    } else if (this.dialogAction === 'Add') {
       this.add()
+    }else if (this.dialogAction === 'Delete') {
+      this.delete()
     }
   }
 
   add() {
     var formData = this.newsForm.value
     var data = { content: formData.content, userId: this.userId }
+    console.log(data);
     this.adminService.addNews(data).subscribe(
       (response: any) => {
         this.dialogRef.close()
@@ -95,8 +98,9 @@ export class AddNewsComponent {
     var data = {
       id: this.dialogData.data.id,
       content: formData.content,
-      userId: this.userId,
+      userId: Number(this.userId),
     }
+    console.log(data);
     this.adminService.updateNews(data).subscribe(
       (response: any) => {
         this.dialogRef.close()
@@ -118,5 +122,31 @@ export class AddNewsComponent {
         )
       },
     )
+  }
+
+  delete() {
+    var data = { id: this.dialogData.data.id, userId: this.userId }
+    console.log(data);
+    // this.adminService.deleteNews(data).subscribe(
+    //   (response: any) => {
+    //     this.dialogRef.close()
+    //     this.onEditNews.emit()
+    //     this.responseMessage = response.message
+    //     this.snackbarService.openSnackBar(this.responseMessage, 'success')
+    //   },
+    //   (error: any) => {
+    //     console.log(error)
+    //     this.dialogRef.close()
+    //     if (error.error?.message) {
+    //       this.responseMessage = error.error?.message
+    //     } else {
+    //       this.responseMessage = GlobalConstants.genericError
+    //     }
+    //     this.snackbarService.openSnackBar(
+    //       this.responseMessage,
+    //       GlobalConstants.error,
+    //     )
+    //   },
+    // )
   }
 }

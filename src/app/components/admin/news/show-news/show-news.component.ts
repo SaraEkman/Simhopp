@@ -87,7 +87,19 @@ export class ShowNewsComponent {
   }
 
   editNewsAction(el: any) {
-
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.data = {
+      action: 'Edit',
+      data: el
+    }
+    dialogConfig.width = '850px'
+    const dialogRef = this.dialog.open(AddNewsComponent, dialogConfig)
+    this.router.events.subscribe((event) => {
+      dialogRef.close()
+    })
+    const sub = dialogRef.componentInstance.onEditNews.subscribe((res: any) => {
+      this.getNews()
+     })
   }
 
   deleteNewsAction(id: any) {
