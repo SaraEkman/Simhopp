@@ -5,11 +5,14 @@ import { AdminService } from 'src/app/services/admin.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { AngularEditorConfig } from '@kolkov/angular-editor'
+// import { DomSanitizer } from '@angular/platform-browser';
+import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 @Component({
   selector: 'app-add-news',
   templateUrl: './add-news.component.html',
   styleUrls: ['./add-news.component.scss'],
+    providers: [SanitizeHtmlPipe]
 })
 export class AddNewsComponent {
   onAddNews = new EventEmitter()
@@ -36,6 +39,7 @@ export class AddNewsComponent {
     private adminService: AdminService,
     public dialogRef: MatDialogRef<AddNewsComponent>,
     private snackbarService: SnackbarService,
+    private sanitizeHtml: SanitizeHtmlPipe
   ) {
     this.userId = localStorage.getItem('userId')
   }
@@ -63,12 +67,13 @@ export class AddNewsComponent {
   add() {
     var formData = this.newsForm.value
     var data = { content: formData.content, userId: this.userId }
-    this.adminService.addNews(data).subscribe((response: any) => {
-      this.dialogRef.close()
-      this.onAddNews.emit()
-      this.responseMessage = response.message
-      this.snackbarService.openSnackBar(this.responseMessage, 'success')
-    },
+    this.adminService.addNews(data).subscribe(
+      (response: any) => {
+        this.dialogRef.close()
+        this.onAddNews.emit()
+        this.responseMessage = response.message
+        this.snackbarService.openSnackBar(this.responseMessage, 'success')
+      },
       (error: any) => {
         console.log(error)
         this.dialogRef.close()
@@ -77,20 +82,28 @@ export class AddNewsComponent {
         } else {
           this.responseMessage = GlobalConstants.genericError
         }
-        this.snackbarService.openSnackBar(this.responseMessage,  GlobalConstants.error)
-      }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
+      },
     )
   }
 
   edit() {
-     var formData = this.newsForm.value
-    var data = { id: this.dialogData.data.id,content: formData.content, userId: this.userId }
-    this.adminService.updateNews(data).subscribe((response: any) => {
-      this.dialogRef.close()
-      this.onEditNews.emit()
-      this.responseMessage = response.message
-      this.snackbarService.openSnackBar(this.responseMessage, 'success')
-    },
+    var formData = this.newsForm.value
+    var data = {
+      id: this.dialogData.data.id,
+      content: formData.content,
+      userId: this.userId,
+    }
+    this.adminService.updateNews(data).subscribe(
+      (response: any) => {
+        this.dialogRef.close()
+        this.onEditNews.emit()
+        this.responseMessage = response.message
+        this.snackbarService.openSnackBar(this.responseMessage, 'success')
+      },
       (error: any) => {
         console.log(error)
         this.dialogRef.close()
@@ -99,8 +112,11 @@ export class AddNewsComponent {
         } else {
           this.responseMessage = GlobalConstants.genericError
         }
-        this.snackbarService.openSnackBar(this.responseMessage,  GlobalConstants.error)
-      }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
+      },
     )
   }
 }

@@ -19,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SanitizeHtmlPipe } from './news/add-news/sanitize-html.pipe'
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ShowNewsComponent,
     ShowMembersComponent,
     AddNewsComponent,
+    SanitizeHtmlPipe
   ],
   imports: [
     CommonModule,
@@ -46,8 +48,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     MatFormFieldModule,
     FormsModule,
     AngularEditorModule,
+    // AngularFontAwesomeModule
   ],
-  exports: [DashboardComponent],
+  exports: [DashboardComponent, SanitizeHtmlPipe],
   // providers: [MenuItems],
+  providers: [SanitizeHtmlPipe],
 })
 export class AdminModule {}

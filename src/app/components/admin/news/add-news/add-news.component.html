@@ -7,14 +7,11 @@
   <form [formGroup]="newsForm">
     <div fxFlex fxLayout="column">
       <div fxLayout="row wrap">
-        <!-- <mat-form-field appearance="fill" fxFlex>
-          <mat-label>Textarea</mat-label> -->
-          <!-- <textarea class="textarea" matInput formControlName="content" required></textarea> -->
-            <angular-editor formControlName="content" [placeholder]="'Enter text here...'" [config]="config"></angular-editor>
-          <mat-error *ngIf="newsForm.controls.content.touchend && newsForm.controls.content.invalid">
-            <span *ngIf="newsForm.controls.content.errors?.['required']">Innehållet är obligatoriskt</span>
-          </mat-error>
-        <!-- </mat-form-field> -->
+        <angular-editor matInput formControlName="content" [value]="newsForm.get('content').value|sanitizeHtml"
+          [placeholder]="'Enter text here...'" [config]="config"></angular-editor>
+        <mat-error *ngIf="newsForm.get('content').hasError('required')">
+          Innehållet är obligatoriskt
+        </mat-error>
       </div>
     </div>
   </form>

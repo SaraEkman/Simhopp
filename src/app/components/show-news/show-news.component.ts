@@ -117,35 +117,4 @@ export class ShowNewsComponent {
     )
   }
 
-  addNews() {
-    this.ngxService.start()
-    let data = {
-      content: this.contentForm.value.content,
-      userId: localStorage.getItem('userId'),
-    }
-    console.log(data)
-    this.newsService.addNews(data).subscribe(
-      (response: any) => {
-        console.log(response)
-        this.ngxService.stop()
-        this.responseMessage = response?.message
-        this.snackbarService.openSnackBar(this.responseMessage, '')
-        this.router.navigate(['/'])
-      },
-      (error) => {
-        console.log(error)
-        this.ngxService.stop()
-        if (error.error?.message) {
-          this.responseMessage = error?.error?.message
-        } else {
-          this.responseMessage = GlobalConstants.genericError
-        }
-        this.snackbarService.openSnackBar(
-          this.responseMessage,
-          GlobalConstants.error,
-        )
-      },
-    )
-  }
 }
-
