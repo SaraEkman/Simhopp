@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { AdminService } from 'src/app/services/admin.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
+import { AngularEditorConfig } from '@kolkov/angular-editor'
 
 @Component({
   selector: 'app-add-news',
@@ -18,6 +19,16 @@ export class AddNewsComponent {
   action: any = 'Add'
   responseMessage: any
   userId: any
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+  }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,

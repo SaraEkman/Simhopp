@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
+    AngularEditorModule,
   ],
   exports: [DashboardComponent],
   // providers: [MenuItems],
