@@ -1,11 +1,12 @@
 import { Component } from '@angular/core'
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { Router } from '@angular/router'
 import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { AdminService } from 'src/app/services/admin.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { MatTableDataSource } from '@angular/material/table'
+import { AddNewsComponent } from '../add-news/add-news.component'
 
 @Component({
   selector: 'app-show-news',
@@ -21,7 +22,6 @@ export class ShowNewsComponent {
     'actions',
   ]
   responseMessage: any
-  newsList: any
   dataSource: any
   constructor(
     private adminService: AdminService,
@@ -39,14 +39,14 @@ export class ShowNewsComponent {
       (response: any) => {
         console.log(response)
         this.ngxService.stop()
-        this.newsList = response.map((el: any, i: number) => {
+        let newsList = response.map((el: any, i: number) => {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
           return {
             ...el,
             createDate: date,
           }
         })
-        this.dataSource = new MatTableDataSource(this.newsList)
+        this.dataSource = new MatTableDataSource(newsList)
         console.log(this.dataSource)
       },
       (error: any) => {
@@ -71,10 +71,23 @@ export class ShowNewsComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase()
   }
 
-  handleAddAction() {}
+  handleAddAction() {
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.data = {
+      action: 'Add'
+    }
+    dialogConfig.width = '850px'
+    const dialogRef = this.dialog.open(AddNewsComponent, dialogConfig)
+    this.router.events.subscribe((event) => {
+      dialogRef.close()
+    })
+    const sub = dialogRef.componentInstance.onAddNews.subscribe((res: any) => {
+      this.getNews()
+     })
+  }
 
   editNewsAction(el: any) {
-    // this.router.navigate(['/admin/edit-news', ])
+
   }
 
   deleteNewsAction(id: any) {

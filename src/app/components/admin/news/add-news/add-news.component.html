@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row">
+    <span class="title-center">{{dialogData.action}} News</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="newsForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Textarea</mat-label>
+          <textarea class="textarea" matInput formControlName="content" required></textarea>
+          <mat-error *ngIf="newsForm.controls.content.touchend && newsForm.controls.content.invalid">
+            <span *ngIf="newsForm.controls.content.errors?.['required']">Innehållet är obligatoriskt</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button type="submit" color="primary" (click)="handleSubmit()"
+    [disabled]="!(newsForm.valid && newsForm.dirty)">{{action}}</button>
+  <button mat-raised-button color="accent" mat-dialog-close>Avbryt</button>
+</mat-dialog-actions>
