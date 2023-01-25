@@ -20,8 +20,10 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { AngularEditorModule } from '@kolkov/angular-editor';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SanitizeHtmlPipe } from './news/manage-news/sanitize-html.pipe';
-import { ManageNewsComponent } from './news/manage-news/manage-news.component'
-
+import { ManageNewsComponent } from './news/manage-news/manage-news.component';
+import { ManageMembersComponent } from './members/manage-members/manage-members.component'
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -32,7 +34,8 @@ import { ManageNewsComponent } from './news/manage-news/manage-news.component'
     ShowNewsComponent,
     ShowMembersComponent,
     SanitizeHtmlPipe,
-    ManageNewsComponent
+    ManageNewsComponent,
+    ManageMembersComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,8 @@ import { ManageNewsComponent } from './news/manage-news/manage-news.component'
     MatFormFieldModule,
     FormsModule,
     AngularEditorModule,
+    MatSelectModule,
+    MatSlideToggleModule
     // AngularFontAwesomeModule
   ],
   exports: [DashboardComponent, SanitizeHtmlPipe],

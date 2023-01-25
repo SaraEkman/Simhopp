@@ -1,0 +1,57 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row">
+    <span class="title-center">{{dialogData.action}} Member</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="memberForm">
+    <div fxFlex fxLayout="column">
+      <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+        <mat-label>Användarnamn</mat-label>
+        <input autocomplete matInput formControlName="userName" required>
+        <mat-error
+          *ngIf="memberForm.controls.userName.invalid && (memberForm.controls.userName.dirty ||memberForm.controls.userName.touched)">
+          <span *ngIf="memberForm.controls.userName.errors?.['required']">Användarnamn är obligatoriskt</span>
+          <span *ngIf="memberForm.controls.userName.errors?.['pattern']">Användarnamn är invalid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+        <mat-label>Email</mat-label>
+        <input autocomplete matInput formControlName="userEmail" required>
+        <mat-error
+          *ngIf="memberForm.controls.userEmail.invalid && (memberForm.controls.userEmail.dirty || memberForm.controls.userEmail.touchend)">
+          <span *ngIf="memberForm.controls.userEmail.errors?.['required']">Email är obligatoriskt</span>
+          <span *ngIf="memberForm.controls.userEmail.errors?.['pattern']">Email är invalid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+        <mat-label>Lösenord</mat-label>
+        <input autocomplete type="password" matInput formControlName="password" required>
+        <mat-error
+          *ngIf="memberForm.controls.password.invalid && (memberForm.controls.password.dirty || memberForm.controls.password.touched)">
+          <span *ngIf="memberForm.controls.password.errors?.['required']">Lösenord är obligatoriskt</span>
+          <span *ngIf="memberForm.controls.password.errors?.['minlength']">Lösenord
+            är invalid</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+        <mat-label>Roll</mat-label>
+        <mat-select formControlName="admin">
+          <mat-option *ngFor="let role of roles" [value]="role.value">{{role.viewValue}}</mat-option>
+        </mat-select>
+        <!-- <mat-error
+          *ngIf="memberForm.controls.admin.invalid && (memberForm.controls.admin.dirty || memberForm.controls.admin.touched)">
+          <span *ngIf="memberForm.controls.admin.errors?.['required']">Roll är obligatoriskt</span>
+        </mat-error> -->
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button type="submit" color="primary" (click)="handleSubmit()"
+    [disabled]="!(memberForm.valid && memberForm.dirty)">{{action}}</button>
+  <button mat-raised-button color="accent" mat-dialog-close>Avbryt</button>
+</mat-dialog-actions>
