@@ -26,9 +26,9 @@ export class AdminService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     })
   }
-  // deleteNews(data: any) {
-  //   return this.HttpClient.delete(`${GlobalConstants.url}/news/delete`, data, {
-  //     headers: new HttpHeaders().set('Content-Type', 'application/json'),
-  //   })
+//   deleteNews(data: any) {
+//     return this.HttpClient.delete(`${GlobalConstants.url}/news/delete`, data, {
+//   headers: new HttpHeaders().set('Content-Type', 'application/json'),
+// })
   // }
 }

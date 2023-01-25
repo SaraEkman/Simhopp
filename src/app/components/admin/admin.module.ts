@@ -12,7 +12,6 @@ import { ShowMembersComponent } from './members/show-members/show-members.compon
 import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon';
-import { AddNewsComponent } from './news/add-news/add-news.component'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,7 +19,8 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { AngularEditorModule } from '@kolkov/angular-editor';
 // import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { SanitizeHtmlPipe } from './news/add-news/sanitize-html.pipe'
+import { SanitizeHtmlPipe } from './news/manage-news/sanitize-html.pipe';
+import { ManageNewsComponent } from './news/manage-news/manage-news.component'
 
 
 @NgModule({
@@ -31,8 +31,8 @@ import { SanitizeHtmlPipe } from './news/add-news/sanitize-html.pipe'
     ConfirmationComponent,
     ShowNewsComponent,
     ShowMembersComponent,
-    AddNewsComponent,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    ManageNewsComponent
   ],
   imports: [
     CommonModule,

@@ -6,7 +6,7 @@ import { AdminService } from 'src/app/services/admin.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { MatTableDataSource } from '@angular/material/table'
-import { AddNewsComponent } from '../add-news/add-news.component'
+import { ManageNewsComponent } from '../manage-news/manage-news.component'
 
 @Component({
   selector: 'app-show-news',
@@ -74,32 +74,32 @@ export class ShowNewsComponent {
   handleAddAction() {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = {
-      action: 'Add'
+      action: 'Add',
     }
     dialogConfig.width = '850px'
-    const dialogRef = this.dialog.open(AddNewsComponent, dialogConfig)
+    const dialogRef = this.dialog.open(ManageNewsComponent, dialogConfig)
     this.router.events.subscribe((event) => {
       dialogRef.close()
     })
     const sub = dialogRef.componentInstance.onAddNews.subscribe((res: any) => {
       this.getNews()
-     })
+    })
   }
 
   editNewsAction(el: any) {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = {
       action: 'Edit',
-      data: el
+      data: el,
     }
     dialogConfig.width = '850px'
-    const dialogRef = this.dialog.open(AddNewsComponent, dialogConfig)
+    const dialogRef = this.dialog.open(ManageNewsComponent, dialogConfig)
     this.router.events.subscribe((event) => {
       dialogRef.close()
     })
     const sub = dialogRef.componentInstance.onEditNews.subscribe((res: any) => {
       this.getNews()
-     })
+    })
   }
 
   deleteNewsAction(id: any) {

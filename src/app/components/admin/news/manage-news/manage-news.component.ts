@@ -6,16 +6,15 @@ import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { AngularEditorConfig } from '@kolkov/angular-editor'
 // import { DomSanitizer } from '@angular/platform-browser';
-import { SanitizeHtmlPipe } from './sanitize-html.pipe';
+import { SanitizeHtmlPipe } from '../manage-news/sanitize-html.pipe';
 
 @Component({
-  selector: 'app-add-news',
-  templateUrl: './add-news.component.html',
-  styleUrls: ['./add-news.component.scss'],
-    providers: [SanitizeHtmlPipe]
+  selector: 'app-manage-news',
+  templateUrl: './manage-news.component.html',
+  styleUrls: ['./manage-news.component.scss']
 })
-export class AddNewsComponent {
-  onAddNews = new EventEmitter()
+export class ManageNewsComponent {
+ onAddNews = new EventEmitter()
   onEditNews = new EventEmitter()
   newsForm: any = FormGroup
   dialogAction: any = 'Add'
@@ -37,7 +36,7 @@ export class AddNewsComponent {
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private formBuilder: FormBuilder,
     private adminService: AdminService,
-    public dialogRef: MatDialogRef<AddNewsComponent>,
+    public dialogRef: MatDialogRef<ManageNewsComponent>,
     private snackbarService: SnackbarService,
     private sanitizeHtml: SanitizeHtmlPipe
   ) {
@@ -59,10 +58,8 @@ export class AddNewsComponent {
   handleSubmit() {
     if (this.dialogAction === 'Edit') {
       this.edit()
-    } else if (this.dialogAction === 'Add') {
+    } else  {
       this.add()
-    }else if (this.dialogAction === 'Delete') {
-      this.delete()
     }
   }
 
@@ -130,7 +127,7 @@ export class AddNewsComponent {
     // this.adminService.deleteNews(data).subscribe(
     //   (response: any) => {
     //     this.dialogRef.close()
-    //     this.onEditNews.emit()
+    //     this.onDeleteNews.emit()
     //     this.responseMessage = response.message
     //     this.snackbarService.openSnackBar(this.responseMessage, 'success')
     //   },
