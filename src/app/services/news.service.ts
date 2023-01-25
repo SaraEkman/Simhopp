@@ -9,17 +9,17 @@ export class NewsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getNews() {
-    return this.httpClient.get(`${GlobalConstants.url}/news`);
+  getNews(limit:any) {
+    return this.httpClient.get(`${GlobalConstants.url}/news?limit=${limit}`);
   }
 
-  getNewsById(id: any) {
-    return this.httpClient.get(`${GlobalConstants.url}/news/get/${id}`);
-  }
+  // getNewsById(id: any) {
+  //   return this.httpClient.get(`${GlobalConstants.url}/news/get/${id}`);
+  // }
 
-  addNews(data: any) {
-    return this.httpClient.post(`${GlobalConstants.url}/news/add`, data, {
-      headers: new HttpHeaders().set('Content-Type', 'application/json'),
-    })
-  }
+  // addNews(data: any) {
+  //   return this.httpClient.post(`${GlobalConstants.url}/news/add`, data, {
+  //     headers: new HttpHeaders().set('Content-Type', 'application/json'),
+  //   })
+  // }
 }

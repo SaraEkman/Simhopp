@@ -12,6 +12,22 @@ export class AdminService {
     return this.HttpClient.get(`${GlobalConstants.url}/users/get`)
   }
 
+  addMember(data: any) {
+    return this.HttpClient.post(`${GlobalConstants.url}/users/signup`, data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    })
+  }
+  updateMember(data: any) {
+    return this.HttpClient.patch(`${GlobalConstants.url}/users/update`, data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    })
+  }
+  deleteMember(data: any) {
+    return this.HttpClient.patch(`${GlobalConstants.url}/users/delete`, data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    })
+  }
+
   getNews() {
     return this.HttpClient.get(`${GlobalConstants.url}/news/get`)
   }

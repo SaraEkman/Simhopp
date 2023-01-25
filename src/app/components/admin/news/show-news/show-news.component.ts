@@ -36,9 +36,6 @@ export class ShowNewsComponent {
     // console.log(this.dataSource)
   }
 
-  click(e: any) {
-    console.log('click', e)
-  }
   getNews() {
     this.adminService.getNews().subscribe(
       (response: any) => {
@@ -46,6 +43,7 @@ export class ShowNewsComponent {
         this.ngxService.stop()
         let newsList = response.map((el: any, i: number) => {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
+          //:TODO: fix this to show yes or no
           let softDelete = el.softDelete ? true : false
           return {
             ...el,

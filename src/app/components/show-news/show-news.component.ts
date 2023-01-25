@@ -95,7 +95,7 @@ export class ShowNewsComponent {
       content: [''],
     })
     this.ngxService.start()
-    this.newsService.getNews().subscribe(
+    this.newsService.getNews(4).subscribe(
       (response: any) => {
         this.ngxService.stop()
         this.getNewsForUser = response.map((el: INewsForUser, i: number) => {
