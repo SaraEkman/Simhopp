@@ -19,6 +19,7 @@ export class ShowNewsComponent {
     'content',
     'userName',
     'createDate',
+    "softDelete",
     'actions',
   ]
   responseMessage: any
@@ -34,20 +35,27 @@ export class ShowNewsComponent {
     this.getNews()
     // console.log(this.dataSource)
   }
+
+  click(e: any) {
+    console.log('click', e)
+  }
   getNews() {
     this.adminService.getNews().subscribe(
       (response: any) => {
-        console.log(response)
+        // console.log(response)
         this.ngxService.stop()
         let newsList = response.map((el: any, i: number) => {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
+          let softDelete = el.softDelete ? true : false
           return {
             ...el,
             createDate: date,
+            softDelete: softDelete,
           }
         })
+        console.log('newsList', newsList)
         this.dataSource = new MatTableDataSource(newsList)
-        console.log(this.dataSource)
+        console.log('this.dataSource', this.dataSource)
       },
       (error: any) => {
         this.ngxService.stop()
@@ -102,31 +110,34 @@ export class ShowNewsComponent {
     })
   }
 
-  deleteNewsAction(id: any) {
+  deleteNewsAction(e: any) {
     this.ngxService.start()
-    // this.adminService.deleteNews(id).subscribe(
-    //   (response: any) => {
-    //     this.ngxService.stop()
-    //     this.responseMessage = response.message
-    //     this.snackbarService.openSnackBar(
-    //       this.responseMessage,
-    //       GlobalConstants.success,
-    //     )
-    //     this.getNews()
-    //   },
-    //   (error: any) => {
-    //     this.ngxService.stop()
-    //     console.log(error)
-    //     if (error.error?.message) {
-    //       this.responseMessage = error.error?.message
-    //     } else {
-    //       this.responseMessage = GlobalConstants.genericError
-    //     }
-    //     this.snackbarService.openSnackBar(
-    //       this.responseMessage,
-    //       GlobalConstants.error,
-    //     )
-    //   },
-    // )
+    console.log(e.id, e.softDelete)
+    let data = {
+      id: e.id,
+      softDelete: !e.softDelete,
+    }
+
+    this.adminService.deleteNews(data).subscribe(
+      (response: any) => {
+        this.ngxService.stop()
+        this.responseMessage = response.message
+        this.snackbarService.openSnackBar(this.responseMessage, '')
+        this.getNews()
+      },
+      (error: any) => {
+        this.ngxService.stop()
+        console.log(error)
+        if (error.error?.message) {
+          this.responseMessage = error.error?.message
+        } else {
+          this.responseMessage = GlobalConstants.genericError
+        }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
+      },
+    )
   }
 }

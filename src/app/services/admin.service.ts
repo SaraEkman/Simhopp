@@ -13,7 +13,7 @@ export class AdminService {
   }
 
   getNews() {
-    return this.HttpClient.get(`${GlobalConstants.url}/news/get`, )
+    return this.HttpClient.get(`${GlobalConstants.url}/news/get`)
   }
 
   addNews(data: any) {
@@ -26,9 +26,11 @@ export class AdminService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     })
   }
-//   deleteNews(data: any) {
-//     return this.HttpClient.delete(`${GlobalConstants.url}/news/delete`, data, {
-//   headers: new HttpHeaders().set('Content-Type', 'application/json'),
-// })
-  // }
+  deleteNews(data: any) {
+    return this.HttpClient.patch(
+      `${GlobalConstants.url}/news/delete`,data,{
+        headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      },
+    )
+  }
 }

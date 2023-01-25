@@ -21,6 +21,18 @@ mat-card {
 table {
   width: 100%;
   border-collapse: collapse;
+
+  .soft-deleted {
+    text-decoration: line-through;
+    color: gray;
+  }
+  .btn {
+    display: none;
+  }
+  .not-soft-deleted {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 @media screen and (max-width: 768px) {
