@@ -66,6 +66,7 @@ header {
               min-width: 160px;
               box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
               z-index: 1;
+              padding-left: 0px;
 
               li {
                 color: black;
@@ -107,7 +108,20 @@ header {
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 1300px) {
+  header {
+    section:first-child {
+      .second-article {
+        nav {
+          min-width: 90vw;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 930px) {
   header {
     section:first-child {
       flex-direction: column;
@@ -118,6 +132,12 @@ header {
       article nav ul {
         flex-wrap: wrap;
         padding-left: 0px;
+      }
+
+      .second-article {
+        nav {
+          flex-wrap: wrap;
+        }
       }
     }
   }
