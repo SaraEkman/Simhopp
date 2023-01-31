@@ -113,30 +113,4 @@ export class ManageMembersComponent {
       },
     )
   }
-
-  delete() {
-    var data = { id: this.dialogData.data.id, userId: this.userId }
-    console.log(data);
-    // this.adminService.deleteNews(data).subscribe(
-    //   (response: any) => {
-    //     this.dialogRef.close()
-    //     this.onDeleteNews.emit()
-    //     this.responseMessage = response.message
-    //     this.snackbarService.openSnackBar(this.responseMessage, 'success')
-    //   },
-    //   (error: any) => {
-    //     console.log(error)
-    //     this.dialogRef.close()
-    //     if (error.error?.message) {
-    //       this.responseMessage = error.error?.message
-    //     } else {
-    //       this.responseMessage = GlobalConstants.genericError
-    //     }
-    //     this.snackbarService.openSnackBar(
-    //       this.responseMessage,
-    //       GlobalConstants.error,
-    //     )
-    //   },
-    // )
-  }
 }

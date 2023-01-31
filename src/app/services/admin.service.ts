@@ -22,8 +22,14 @@ export class AdminService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     })
   }
-  deleteMember(data: any) {
+  softDeleteMember(data: any) {
     return this.HttpClient.patch(`${GlobalConstants.url}/users/delete`, data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    })
+  }
+
+  deleteMember(id: any) {
+    return this.HttpClient.delete(`${GlobalConstants.url}/users/delete/${id}`, {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     })
   }

@@ -7,6 +7,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { MatTableDataSource } from '@angular/material/table'
 import { ManageMembersComponent } from '../manage-members/manage-members.component'
+import { ConfirmationComponent } from '../../confirmation/confirmation.component'
 
 @Component({
   selector: 'app-show-members',
@@ -44,9 +45,6 @@ export class ShowMembersComponent {
         this.member = response
 
         let usersList = response.map((el: any, i: number) => {
-          //:TODO: fix this
-          // let softDelete = el.softDelete ? true : false
-          // let admin = el.admin ? true : false
           let softDelete = el.softDelete ? 'Yes' : 'No'
           let admin = el.admin ? 'Yes' : 'No'
           return {
@@ -80,7 +78,7 @@ export class ShowMembersComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase()
   }
 
-    handleAddAction() {
+  handleAddAction() {
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = {
       action: 'Add',
@@ -90,10 +88,12 @@ export class ShowMembersComponent {
     this.router.events.subscribe((event) => {
       dialogRef.close()
     })
-    const sub = dialogRef.componentInstance.onAddMember.subscribe((res: any) => {
-      this.getUsers()
-    })
-    }
+    const sub = dialogRef.componentInstance.onAddMember.subscribe(
+      (res: any) => {
+        this.getUsers()
+      },
+    )
+  }
 
   editMemberAction(el: any) {
     const dialogConfig = new MatDialogConfig()
@@ -106,26 +106,31 @@ export class ShowMembersComponent {
     this.router.events.subscribe((event) => {
       dialogRef.close()
     })
-    const sub = dialogRef.componentInstance.onEditMember.subscribe((res: any) => {
-      this.getUsers()
-    })
+    const sub = dialogRef.componentInstance.onEditMember.subscribe(
+      (res: any) => {
+        this.getUsers()
+      },
+    )
   }
 
   deleteMemberAction(e: any) {
-    this.ngxService.start()
-    console.log(e.id, e.softDelete)
-    let softDelete;
-    if (e.softDelete == 'Yes') {
-       softDelete = e.softDelete = true
-    } else if (e.softDelete == 'No') {
-      softDelete = e.softDelete = false
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.data = {
+      message: 'delete ' + e.userName + ' member',
     }
-    let data = {
-      id: e.id,
-      softDelete: !softDelete,
-    }
-    console.log(data);
-    this.adminService.deleteMember(data).subscribe(
+    const dialogRef = this.dialog.open(ConfirmationComponent, dialogConfig)
+    const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe(
+      (res: any) => {
+        this.ngxService.start()
+        this.deleteMember(e.id)
+        dialogRef.close()
+      },
+    )
+  }
+
+  deleteMember(id: any) {
+    console.log('deleteMember', id)
+    this.adminService.deleteMember(id).subscribe(
       (response: any) => {
         this.ngxService.stop()
         this.responseMessage = response.message
@@ -146,5 +151,46 @@ export class ShowMembersComponent {
         )
       },
     )
+  }
+
+  onChange(softDelete: any, id: any) {
+    console.log('onChange')
+    console.log(softDelete, id)
+
+    this.ngxService.start()
+
+    let softDeleteValue;
+      if (softDelete) {
+         softDeleteValue = softDelete = true
+      } else if (!softDelete) {
+        softDeleteValue = softDelete = false
+      }
+      let data = {
+        id: id,
+        softDelete: softDeleteValue,
+      }
+      console.log(data)
+      this.adminService.softDeleteMember(data).subscribe(
+        (response: any) => {
+          this.ngxService.stop()
+          this.responseMessage = response.message
+          this.snackbarService.openSnackBar(this.responseMessage, '')
+          this.getUsers()
+        },
+        (error: any) => {
+          this.ngxService.stop()
+          console.log(error)
+          if (error.error?.message) {
+            this.responseMessage = error.error?.message
+          } else {
+            this.responseMessage = GlobalConstants.genericError
+          }
+          this.snackbarService.openSnackBar(
+            this.responseMessage,
+            GlobalConstants.error,
+          )
+        },
+      )
+
   }
 }

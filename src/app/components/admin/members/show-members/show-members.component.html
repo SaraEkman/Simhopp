@@ -36,14 +36,21 @@
         <button mat-icon-button color="primary" matTooltip="Edit" (click)="editMemberAction(element)">
           <mat-icon>create</mat-icon>
         </button>
-        <mat-slide-toggle  matTooltip="Delete" (click)="deleteMemberAction(element)">Delete</mat-slide-toggle>
+        <!-- <mat-slide-toggle  matTooltip="Delete" (click)="deleteMemberAction(element)">Delete</mat-slide-toggle> -->
         <!-- <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteMemberAction(element)">
           <mat-icon>remove_circle_outline</mat-icon>
         </button> -->
+        <button mat-icon-button color="warn" matTooltip="Delete" (click)="deleteMemberAction(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <!-- <mat-slide-toggle (change)="toggleSoftDelete(element)" [checked]="element.softDelete" matTooltip="SoftDelete" (click)="softDeleteMemberAction(element)">
+          SoftDelete
+        </mat-slide-toggle> -->
+        <mat-slide-toggle (change)="onChange($event.checked, element.id)" matTooltip="Activate or Deactivate member" [checked]="element.softDelete === 'Yes'"></mat-slide-toggle>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
   </table>
 
 </div>
