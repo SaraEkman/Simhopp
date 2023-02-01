@@ -43,7 +43,7 @@ table {
 
   .soft-deleted {
     text-decoration: line-through;
-    color: gray;
+    color: gray !important;
   }
   .btn {
     display: none;

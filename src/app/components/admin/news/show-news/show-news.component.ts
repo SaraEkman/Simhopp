@@ -19,7 +19,7 @@ export class ShowNewsComponent {
     'content',
     'userName',
     'createDate',
-    "softDelete",
+    'softDelete',
     'actions',
   ]
   responseMessage: any
@@ -44,7 +44,7 @@ export class ShowNewsComponent {
         let newsList = response.map((el: any, i: number) => {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
           //:TODO: fix this to show yes or no
-          let softDelete = el.softDelete ? true : false
+          let softDelete = el.softDelete ? 'Yes' : 'No'
           return {
             ...el,
             createDate: date,
@@ -108,15 +108,24 @@ export class ShowNewsComponent {
     })
   }
 
-  deleteNewsAction(e: any) {
-    this.ngxService.start()
-    console.log(e.id, e.softDelete)
-    let data = {
-      id: e.id,
-      softDelete: !e.softDelete,
-    }
+  onChange(softDelete: any, id: any) {
+    console.log('onChange')
+    console.log(softDelete, id)
 
-    this.adminService.deleteNews(data).subscribe(
+    this.ngxService.start()
+
+    let softDeleteValue
+    if (softDelete) {
+      softDeleteValue = softDelete = true
+    } else if (!softDelete) {
+      softDeleteValue = softDelete = false
+    }
+    let data = {
+      id: id,
+      softDelete: softDeleteValue,
+    }
+    console.log(data)
+    this.adminService.softDeleteNews(data).subscribe(
       (response: any) => {
         this.ngxService.stop()
         this.responseMessage = response.message

@@ -48,7 +48,7 @@ export class AdminService {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     })
   }
-  deleteNews(data: any) {
+  softDeleteNews(data: any) {
     return this.HttpClient.patch(
       `${GlobalConstants.url}/news/delete`,data,{
         headers: new HttpHeaders().set('Content-Type', 'application/json'),
