@@ -27,7 +27,6 @@ export class HeaderComponent {
       this.CheckUserLogin = false
       this.CheckAdminLogin = false
     }
-
   }
 
   signUpAction() {
@@ -59,9 +58,20 @@ export class HeaderComponent {
 
   loggOutAction() {
     console.log('loggOutAction')
-    localStorage.clear()
-    this.CheckUserLogin = false
-    this.CheckAdminLogin = false
+    const dialogConfig = new MatDialogConfig()
+    dialogConfig.data = {
+      message: 'logga ut',
+    }
+    const dialogRef = this.dialog.open(ConfirmationComponent, dialogConfig)
+    const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe(
+      (res: any) => {
+        dialogRef.close()
+        localStorage.clear()
+        this.CheckUserLogin = false
+        this.CheckAdminLogin = false
+        this.router.navigate(['/'])
+      },
+    )
   }
 
   adminDashboardAction() {

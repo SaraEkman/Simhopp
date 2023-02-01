@@ -2,7 +2,7 @@
   <b><span>News</span></b>
   <button mat-flat-button color="primary" class="add-news-btn" (click)="handleAddAction()">Lägg till en ny news</button>
 </mat-card>
-<mat-card>
+<mat-card class="search-input">
   <mat-form-field appearance="fill">
     <mat-label>Sök</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input>
@@ -42,7 +42,6 @@
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
   </table>
-
 </div>
