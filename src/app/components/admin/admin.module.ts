@@ -23,7 +23,12 @@ import { SanitizeHtmlPipe } from './news/manage-news/sanitize-html.pipe';
 import { ManageNewsComponent } from './news/manage-news/manage-news.component';
 import { ManageMembersComponent } from './members/manage-members/manage-members.component'
 import {MatSelectModule} from '@angular/material/select';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+// import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+// import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -52,7 +57,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FormsModule,
     AngularEditorModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule,
+    // ScrollingModule,
+    MatButtonToggleModule,
+    // MatAutocompleteModule,
     // AngularFontAwesomeModule
   ],
   exports: [DashboardComponent, SanitizeHtmlPipe],

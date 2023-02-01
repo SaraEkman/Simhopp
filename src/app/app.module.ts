@@ -32,8 +32,9 @@ import { TokenInterceptorInterceptor } from './services/token-interceptor.interc
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ShowNewsComponent } from './components/show-news/show-news.component'
 import { ChangeUseremailComponent } from './components/change-useremail/change-useremail.component';
-
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon'
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: 'Loading...',
@@ -77,6 +78,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FormsModule,
     CommonModule,
     AngularEditorModule,
+    MatAutocompleteModule,
+    MatMenuModule,
+    MatIconModule
     // FlexLayoutModule,
   ],
   providers: [

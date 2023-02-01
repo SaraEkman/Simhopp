@@ -35,6 +35,7 @@ table {
   }
   .mat-mdc-row:hover .mat-mdc-cell {
     border-color: currentColor;
+    cursor: default;
   }
   .demo-row-is-clicked {
     font-weight: bold;

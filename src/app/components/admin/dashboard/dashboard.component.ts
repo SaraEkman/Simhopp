@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ViewEncapsulation } from '@angular/core'
 import { Router } from '@angular/router'
 import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { AdminService } from 'src/app/services/admin.service'
@@ -11,6 +11,7 @@ import { ConfirmationComponent } from '../confirmation/confirmation.component'
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent {
   isAdmin: boolean = false
