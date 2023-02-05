@@ -1,7 +1,7 @@
 <div class="news-container">
   <article class="first-news">
-    <div> <img src="assets/images/img2.jpg" alt="Medarbetare">
-      <img src="assets/images/img1.jpg" alt="Medarbetare">
+    <div>
+      <img src={{getFirstNewsForUser.image}} alt="image">
     </div>
     <div>
       <h4 [innerHTML]="getFirstNewsForUser.createDate"></h4>
@@ -12,7 +12,7 @@
   <section>
     <article class="container" *ngFor="let el of getNewsForUser; let i = index;">
       <div>
-        <img src="assets/images/img3.png" alt="Medarbetare">
+        <img src={{el.image}} alt="Medarbetare">
         <div>
           <h4 [innerHTML]="el.createDate"></h4>
           <div [innerHTML]="el.content"></div>

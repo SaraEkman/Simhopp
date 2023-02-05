@@ -17,6 +17,7 @@ export class ShowNewsComponent {
   displayedColumns: string[] = [
     'id',
     'content',
+    'image',
     'userName',
     'createDate',
     'softDelete',
@@ -47,6 +48,7 @@ export class ShowNewsComponent {
           let softDelete = el.softDelete ? 'Yes' : 'No'
           return {
             ...el,
+            image: 'assets/uploads/' + el.image,
             createDate: date,
             softDelete: softDelete,
           }

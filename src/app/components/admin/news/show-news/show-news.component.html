@@ -18,8 +18,15 @@
       <th mat-header-cell *matHeaderCellDef>Innehåll</th>
       <!-- <td mat-cell *matCellDef="let element"
         [innerHTML]="element.content"></td> -->
-      <td [ngClass]="element.softDelete === 'Yes' ? 'soft-deleted' : 'not-soft-deleted'" mat-cell *matCellDef="let element"
-        [innerHTML]="element.content"></td>
+      <td [ngClass]="element.softDelete === 'Yes' ? 'soft-deleted' : 'not-soft-deleted'" mat-cell
+        *matCellDef="let element" [innerHTML]="element.content"></td>
+    </ng-container>
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>image</th>
+      <td [ngClass]="element.softDelete === 'Yes' ? 'soft-deleted' : 'not-soft-deleted'" mat-cell
+        *matCellDef="let element">
+        <img class="imageEl" src={{element.image}} alt="image">
+      </td>
     </ng-container>
     <ng-container matColumnDef="userName">
       <th mat-header-cell *matHeaderCellDef>Forfattare</th>

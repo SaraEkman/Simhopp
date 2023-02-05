@@ -52,6 +52,11 @@ table {
     text-decoration: none;
     color: black;
   }
+  .imageEl {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
 }
 
 // @media screen and (max-width: 768px) {

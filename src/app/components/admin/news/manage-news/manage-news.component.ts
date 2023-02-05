@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject } from '@angular/core'
+import { Component, EventEmitter, Inject, ViewChild } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { AdminService } from 'src/app/services/admin.service'
@@ -6,15 +6,16 @@ import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { AngularEditorConfig } from '@kolkov/angular-editor'
 // import { DomSanitizer } from '@angular/platform-browser';
-import { SanitizeHtmlPipe } from '../manage-news/sanitize-html.pipe';
+import { SanitizeHtmlPipe } from '../manage-news/sanitize-html.pipe'
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-manage-news',
   templateUrl: './manage-news.component.html',
-  styleUrls: ['./manage-news.component.scss']
+  styleUrls: ['./manage-news.component.scss'],
 })
 export class ManageNewsComponent {
- onAddNews = new EventEmitter()
+  onAddNews = new EventEmitter()
   onEditNews = new EventEmitter()
   newsForm: any = FormGroup
   dialogAction: any = 'Add'
@@ -22,14 +23,76 @@ export class ManageNewsComponent {
   responseMessage: any
   userId: any
   config: AngularEditorConfig = {
+    // editable: true,
+    // spellcheck: true,
+    // height: '15rem',
+    // minHeight: '5rem',
+    // placeholder: 'Enter text here...',
+    // translate: 'no',
+    // defaultParagraphSeparator: 'p',
+    // defaultFontName: 'Arial',
+
     editable: true,
     spellcheck: true,
     height: '15rem',
     minHeight: '5rem',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
     placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' },
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['bold', 'italic'],
+      ['fontSize'],
+      ['insertImage', 'insertVideo'],
+      //  ['insertVideo'],
+    ],
+  }
+
+  selectedFile: File = null as any
+  imageUrl: any = ''
+  empty = false
+
+  onFileChanged(event: any) {
+    this.selectedFile = event.target.files[0]
+    console.log(this.selectedFile)
+
+    var reader = new FileReader()
+    reader.readAsDataURL(event.target.files[0])
+    reader.onload = (event2) => {
+      this.imageUrl = reader.result
+      console.log(this.imageUrl)
+      console.log(event2)
+    }
   }
 
   constructor(
@@ -38,7 +101,8 @@ export class ManageNewsComponent {
     private adminService: AdminService,
     public dialogRef: MatDialogRef<ManageNewsComponent>,
     private snackbarService: SnackbarService,
-    private sanitizeHtml: SanitizeHtmlPipe
+    private sanitizeHtml: SanitizeHtmlPipe,
+    private http: HttpClient,
   ) {
     this.userId = localStorage.getItem('userId')
   }
@@ -46,84 +110,115 @@ export class ManageNewsComponent {
   ngOnInit(): void {
     this.newsForm = this.formBuilder.group({
       content: ['', Validators.required],
+      image: ['', Validators.required],
     })
 
     if (this.dialogData.action == 'Edit') {
       this.dialogAction = 'Edit'
       this.action = 'Update'
       this.newsForm.patchValue(this.dialogData.data)
+      //:TODO: Fix imageUrl because it's giving an error
+      this.imageUrl = this.dialogData.data.image
     }
   }
 
   handleSubmit() {
     if (this.dialogAction === 'Edit') {
       this.edit()
-    } else  {
+    } else {
       this.add()
     }
   }
 
   add() {
+    console.log(this.newsForm.value)
     var formData = this.newsForm.value
-    var data = { content: formData.content, userId: this.userId }
-    console.log(data);
-    this.adminService.addNews(data).subscribe(
-      (response: any) => {
-        this.dialogRef.close()
-        this.onAddNews.emit()
-        this.responseMessage = response.message
-        this.snackbarService.openSnackBar(this.responseMessage, 'success')
-      },
-      (error: any) => {
-        console.log(error)
-        this.dialogRef.close()
-        if (error.error?.message) {
-          this.responseMessage = error.error?.message
-        } else {
-          this.responseMessage = GlobalConstants.genericError
+
+    const uploadData = new FormData()
+    uploadData.append('image', this.selectedFile)
+
+    this.http
+      .post(`${GlobalConstants.url}/uploads`, uploadData)
+      .subscribe((res: any) => {
+        console.log(res.filename)
+
+        var dataNews = {
+          content: formData.content,
+          userId: this.userId,
+          image: res.filename,
         }
-        this.snackbarService.openSnackBar(
-          this.responseMessage,
-          GlobalConstants.error,
-        )
-      },
-    )
+        console.log(dataNews)
+        if (res) {
+          this.adminService.addNews(dataNews).subscribe(
+            (response: any) => {
+              this.dialogRef.close()
+              this.onAddNews.emit()
+              this.responseMessage = response.message
+              this.snackbarService.openSnackBar(this.responseMessage, 'success')
+            },
+            (error: any) => {
+              console.log(error)
+              this.dialogRef.close()
+              if (error.error?.message) {
+                this.responseMessage = error.error?.message
+              } else {
+                this.responseMessage = GlobalConstants.genericError
+              }
+              this.snackbarService.openSnackBar(
+                this.responseMessage,
+                GlobalConstants.error,
+              )
+            },
+          )
+        }
+      })
   }
 
   edit() {
+    console.log(this.newsForm.value)
     var formData = this.newsForm.value
-    var data = {
-      id: this.dialogData.data.id,
-      content: formData.content,
-      userId: Number(this.userId),
-    }
-    console.log(data);
-    this.adminService.updateNews(data).subscribe(
-      (response: any) => {
-        this.dialogRef.close()
-        this.onEditNews.emit()
-        this.responseMessage = response.message
-        this.snackbarService.openSnackBar(this.responseMessage, 'success')
-      },
-      (error: any) => {
-        console.log(error)
-        this.dialogRef.close()
-        if (error.error?.message) {
-          this.responseMessage = error.error?.message
-        } else {
-          this.responseMessage = GlobalConstants.genericError
+
+    const uploadData = new FormData()
+    uploadData.append('image', this.selectedFile)
+
+    this.http
+      .post(`${GlobalConstants.url}/uploads`, uploadData)
+      .subscribe((res: any) => {
+        console.log(res.filename)
+        var data = {
+          id: this.dialogData.data.id,
+          content: formData.content,
+          userId: Number(this.userId),
+          image: res.filename,
         }
-        this.snackbarService.openSnackBar(
-          this.responseMessage,
-          GlobalConstants.error,
+        console.log(data)
+        this.adminService.updateNews(data).subscribe(
+          (response: any) => {
+            this.dialogRef.close()
+            this.onEditNews.emit()
+            this.responseMessage = response.message
+            this.snackbarService.openSnackBar(this.responseMessage, 'success')
+          },
+          (error: any) => {
+            console.log(error)
+            this.dialogRef.close()
+            if (error.error?.message) {
+              this.responseMessage = error.error?.message
+            } else {
+              this.responseMessage = GlobalConstants.genericError
+            }
+            this.snackbarService.openSnackBar(
+              this.responseMessage,
+              GlobalConstants.error,
+            )
+          },
         )
-      },
-    )
+      })
   }
 
   delete() {
     var data = { id: this.dialogData.data.id, userId: this.userId }
-    console.log(data);
+    console.log(data)
     // this.adminService.deleteNews(data).subscribe(
     //   (response: any) => {
     //     this.dialogRef.close()

@@ -13,6 +13,21 @@
           Innehållet är obligatoriskt
         </mat-error>
       </div>
+      <div fxFlex fxLayout="column">
+        <!-- <mat-form-field appearance="fill" fxFlex class="mat-form-field">
+          <mat-label>ladda Image</mat-label>
+          <input autocomplete type="file" matInput formControlName="image" required>
+          <mat-error
+            *ngIf="newsForm.controls.image.invalid && (newsForm.controls.image.dirty ||newsForm.controls.image.touched)">
+            <span *ngIf="newsForm.controls.image.errors?.['required']">Bilden är obligatoriskt</span>
+            <span *ngIf="newsForm.controls.image.errors?.['pattern']">bilden är invalid</span>
+          </mat-error>
+        </mat-form-field> -->
+
+        <label for="image">Ladda bilder eller filer</label>
+        <input type="file" id="image" name="image" formControlName="image" accept="image/*" (change)="onFileChanged($event)" multiple>
+        <img [src]="imageUrl" height="100" width="120">
+      </div>
     </div>
   </form>
 </mat-dialog-content>
