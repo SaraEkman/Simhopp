@@ -116,8 +116,10 @@ export class ManageNewsComponent {
     if (this.dialogData.action == 'Edit') {
       this.dialogAction = 'Edit'
       this.action = 'Update'
-      this.newsForm.patchValue(this.dialogData.data)
-      //:TODO: Fix imageUrl because it's giving an error
+      // this.newsForm.patchValue(this.dialogData.data)
+      this.newsForm.patchValue({
+        content: this.dialogData.data.content,
+      })
       this.imageUrl = this.dialogData.data.image
     }
   }
