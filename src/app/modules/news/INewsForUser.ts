@@ -3,5 +3,6 @@ export interface INewsForUser {
   content: string;
   createDate: Date;
   image: string;
+  showMore: boolean;
 }
 

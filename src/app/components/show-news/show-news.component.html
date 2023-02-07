@@ -5,18 +5,26 @@
     </div>
     <div>
       <h4 [innerHTML]="getFirstNewsForUser.createDate"></h4>
-      <div [innerHTML]="getFirstNewsForUser.content"></div>
-      <p class="read-first">Läs mer ➝</p>
+      <div *ngIf="!getFirstNewsForUser.showMore" [innerHTML]="trimString(getFirstNewsForUser.content,250)"></div>
+      <div *ngIf="getFirstNewsForUser.showMore" [innerHTML]="getFirstNewsForUser.content"></div>
+      <br>
+      <div class="read-first" *ngIf="getFirstNewsForUser.content.length> 10" (click)="getFirstNewsForUser.showMore = !getFirstNewsForUser.showMore">Läs <span>{{getFirstNewsForUser.showMore ? 'mindre' : 'mer'}} ➝</span>
+      </div>
     </div>
   </article>
   <section>
     <article class="container" *ngFor="let el of getNewsForUser; let i = index;">
       <div>
         <img src={{el.image}} alt="Medarbetare">
-        <div>
+        <div class="news-content">
           <h4 [innerHTML]="el.createDate"></h4>
-          <div [innerHTML]="el.content"></div>
-          <p>Läs mer ➝</p>
+          <div *ngIf="!el.showMore" [innerHTML]="trimString(el.content,250)"></div>
+          <div *ngIf="el.showMore" [innerHTML]="el.content"></div>
+          <br>
+          <div class="read-first" *ngIf="el.content.length> 10"
+            (click)="el.showMore = !el.showMore">Läs <span>{{el.showMore ?
+              'mindre' : 'mer'}} ➝</span>
+          </div>
         </div>
       </div>
     </article>

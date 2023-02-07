@@ -21,6 +21,7 @@ export class ShowNewsComponent {
     content: '',
     createDate: new Date(),
     image: '',
+    showMore: false,
   }
   token = localStorage.getItem('token')
 
@@ -55,8 +56,9 @@ export class ShowNewsComponent {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
           return {
             ...el,
-            image: 'assets/uploads/'+el.image,
+            image: 'assets/uploads/' + el.image,
             createDate: date,
+            showMore: false,
           }
         })
 
@@ -69,5 +71,9 @@ export class ShowNewsComponent {
         this.snackbarService.openSnackBar(error?.error?.message, '')
       },
     )
+  }
+
+  trimString(text: any, length: number) {
+    return text.length > length ? text.substring(0, length) + '...' : text
   }
 }

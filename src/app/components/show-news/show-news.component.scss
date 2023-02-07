@@ -1,5 +1,4 @@
 .news-container {
-  width: 90%;
   margin: 0 auto;
 
   .first-news {
@@ -23,7 +22,7 @@
       }
     }
 
-    div:last-child{
+    div:last-child {
       width: 50%;
       position: relative;
 
@@ -31,10 +30,14 @@
         margin-bottom: 8px;
         margin-top: 4px;
       }
-      p:last-child {
+      div:last-child {
         position: absolute;
         bottom: 0;
         right: 0;
+        text-align: end;
+        padding-bottom: 20px;
+        color: #ff671b;
+        font-weight: bolder;
       }
     }
   }
@@ -45,6 +48,9 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+    // height: 100%;
+    min-height: 400px;
+    height: auto;
 
     article {
       display: flex;
@@ -59,27 +65,31 @@
       overflow: hidden;
       box-sizing: border-box;
       min-height: 400px;
-      height: auto;
+      // height: auto;
+      height: 100%;
 
       div {
-        min-height: 250px;
+        // min-height: 200px;
+
         width: 100%;
+        // height: 100%;
         img {
           object-fit: cover;
           width: 100%;
           height: 200px;
           margin-top: 8px;
         }
-        div {
-          word-break: break-all;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          p {
+        .news-content {
+          position: relative;
+          div:last-child {
             font-size: 0.8rem;
-            font-weight: 300;
+            font-weight: bolder;
+            color: #ff671b;
             margin-bottom: 8px;
-            align-self: end;
+            text-align: end;
+            position: absolute;
+            right: 0;
+            bottom: 0;
           }
         }
       }
@@ -87,7 +97,8 @@
   }
 }
 
-@media screen and (max-width: 1091px) {
+
+@media screen and (max-width: 768px) {
   .news-container {
     width: 100%;
     .first-news {
@@ -99,10 +110,10 @@
         display: flex;
 
         img {
-          width: 370px;
+          width: 340px;
           padding-top: 20px;
         }
-     }
+      }
       div:last-child {
         // width: 325px;
         width: 90%;
@@ -111,15 +122,7 @@
     }
     section {
       article {
-        width: 48%;
-        margin: 0 !important;
-        height: auto !important;
-        // min-width: 370px;
-
-        div {
-          padding-left: 0;
-          max-width: 100%;
-        }
+        width: 90%;
       }
     }
   }
@@ -128,11 +131,10 @@
 @media screen and (min-width: 1350px) {
   .news-container {
     .first-news {
-      width: 80%;
+      width: 74%;
       margin: 0 auto;
       margin-bottom: 2rem;
     }
-
 
     section {
       article {
