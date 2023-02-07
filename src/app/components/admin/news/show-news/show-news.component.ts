@@ -25,6 +25,8 @@ export class ShowNewsComponent {
   ]
   responseMessage: any
   dataSource: any
+  showMoreDatas: any
+  showMore: boolean = false
   constructor(
     private adminService: AdminService,
     private ngxService: NgxUiLoaderService,
@@ -53,6 +55,7 @@ export class ShowNewsComponent {
             softDelete: softDelete,
           }
         })
+        this.showMoreDatas = newsList
         console.log('newsList', newsList)
         this.dataSource = new MatTableDataSource(newsList)
         console.log('this.dataSource', this.dataSource)
@@ -148,5 +151,9 @@ export class ShowNewsComponent {
         )
       },
     )
+  }
+
+  trimString(text: any, length: number) {
+    return text.length > length ? text.substring(0, length) + '...' : text
   }
 }
