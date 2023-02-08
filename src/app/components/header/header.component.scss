@@ -270,14 +270,23 @@ header {
                   padding: 10px;
                   margin: 0%;
                   list-style: none;
-                  text-align: end;
                   transition: all 0.3s ease-in-out;
+
+                    .icon {
+                       justify-content: end;
+                       font-size: medium;
+                    }
 
                   &:hover {
                     cursor: pointer;
                     background-color: black;
-                    color: #5ee0e0;
                     transition: all 0.3s ease-in-out;
+
+                    .icon {
+
+                      color: #5ee0e0;
+                      transition: all 0.3s ease-in-out;
+                    }
                   }
                 }
               }
