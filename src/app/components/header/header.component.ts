@@ -13,6 +13,7 @@ import { ConfirmationComponent } from '../admin/confirmation/confirmation.compon
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  toggle: boolean = false;
   constructor(private dialog: MatDialog, private router: Router) {}
   CheckUserLogin: boolean = false
   CheckAdminLogin: boolean = false
