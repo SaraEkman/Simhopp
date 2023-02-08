@@ -7,11 +7,10 @@ header {
     z-index: 100;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 1rem;
     align-items: center;
     flex-wrap: wrap;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
 
     article:first-child {
       display: flex;
@@ -45,7 +44,7 @@ header {
             color: #fff;
 
             &:hover {
-              color: black;
+              color: #ff910d;
 
               .dropdown-content {
                 display: block;
@@ -67,7 +66,20 @@ header {
                 text-decoration: none;
                 display: block;
                 &:hover {
-                  background-color: #ddd;
+                  background-color: #ff910d;
+                  color: #fff;
+                }
+              }
+            }
+          }
+
+          div {
+            ul {
+              li {
+                .icon {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
                 }
               }
             }
@@ -123,24 +135,9 @@ header {
   }
 }
 
-// @media screen and (max-width: 1300px) {
-//   header {
-//     section:first-child {
-//       .second-article {
-//         nav {
-//           min-width: 90vw;
-//           box-sizing: border-box;
-//         }
-//       }
-//     }
-//   }
-// }
-
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 996px) {
   header {
     section:first-child {
-      justify-content: space-between;
-      padding: 1rem;
       article:first-child {
         z-index: 100000;
         h1 {
