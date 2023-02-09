@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { NgxUiLoaderService } from 'ngx-ui-loader'
 import { INewsForUser } from 'src/app/modules/news/INewsForUser'
+import { GlobalConstants } from 'src/app/shared/global-constants'
 
 @Component({
   selector: 'app-show-news',
@@ -41,7 +42,7 @@ export class ShowNewsComponent {
     this.newsService.getNews(4).subscribe(
       (response: any) => {
         this.ngxService.stop()
-        this.getNewsForUser = response.news.map((el: INewsForUser, i: number) => {
+        this.getNewsForUser = response.map((el: INewsForUser, i: number) => {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
           return {
             ...el,
@@ -52,10 +53,19 @@ export class ShowNewsComponent {
         })
         this.getFirstNewsForUser = this.getNewsForUser[0]
         this.getNewsForUser = this.getNewsForUser.slice(1)
+
       },
       (error) => {
         this.ngxService.stop()
-        this.snackbarService.openSnackBar(error?.error?.message, '')
+       if (error.error?.message) {
+          this.responseMessage = error.error?.message
+        } else {
+          this.responseMessage = GlobalConstants.genericError
+        }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
       },
     )
   }
