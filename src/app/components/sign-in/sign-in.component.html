@@ -4,6 +4,7 @@
       <span class="title-center">Registrera dig</span>
     </mat-toolbar-row>
   </mat-toolbar>
+
   <mat-dialog-content class="mat-typography">
     <form [formGroup]="signupForm">
       <div fxFlex fxLayout="column">
@@ -41,6 +42,7 @@
       </div>
     </form>
   </mat-dialog-content>
+  
   <mat-dialog-actions align="center" class="mat-dialog-action">
     <button mat-raised-button type="submit" color="primary" (click)="handleSubmit()"
     [disabled]="!(signupForm.valid && signupForm.dirty)">Registrera</button>

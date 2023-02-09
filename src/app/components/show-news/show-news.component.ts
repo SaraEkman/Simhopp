@@ -25,17 +25,6 @@ export class ShowNewsComponent {
   }
   token = localStorage.getItem('token')
 
-  // config: AngularEditorConfig = {
-  //   editable: true,
-  //   spellcheck: true,
-  //   height: '15rem',
-  //   minHeight: '5rem',
-  //   placeholder: 'Enter text here...',
-  //   translate: 'no',
-  //   defaultParagraphSeparator: 'p',
-  //   defaultFontName: 'Arial',
-  // }
-
   constructor(
     private router: Router,
     private newsService: NewsService,
@@ -61,10 +50,8 @@ export class ShowNewsComponent {
             showMore: false,
           }
         })
-
         this.getFirstNewsForUser = this.getNewsForUser[0]
         this.getNewsForUser = this.getNewsForUser.slice(1)
-        console.log('NEWS', this.getNewsForUser[0].content)
       },
       (error) => {
         this.ngxService.stop()

@@ -5,8 +5,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component'
 import { GlobalConstants } from './shared/global-constants'
 import { RouteGuardService } from './services/route-guard.service'
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component'
-import { ShowNewsComponent } from './components/admin/news/show-news/show-news.component'
-import { ShowMembersComponent } from './components/admin/members/show-members/show-members.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

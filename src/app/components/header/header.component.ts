@@ -31,34 +31,29 @@ export class HeaderComponent {
   }
 
   signUpAction() {
-    console.log('signupAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px'
     this.dialog.open(SignInComponent, dialogConfig)
   }
 
   logInAction() {
-    console.log('logInAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px'
     this.dialog.open(LogInComponent, dialogConfig)
   }
 
   forgotPasswordAction() {
-    console.log('forgotPasswordAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px'
     this.dialog.open(ForgotPasswordComponent, dialogConfig)
   }
   changeUserEmailAction() {
-    console.log('changeUserEmailAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.width = '550px'
     this.dialog.open(ChangeUseremailComponent, dialogConfig)
   }
 
   loggOutAction() {
-    console.log('loggOutAction')
     const dialogConfig = new MatDialogConfig()
     dialogConfig.data = {
       message: 'logga ut',
@@ -76,7 +71,6 @@ export class HeaderComponent {
   }
 
   adminDashboardAction() {
-    console.log('adminDashboardAction')
     this.router.navigate(['/dashboard'])
   }
 }

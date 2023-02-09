@@ -42,17 +42,11 @@ export class LogInComponent {
     })
   }
 
-  // ngOnDestroy() {
-
-  // }
-
   handleSubmit() {
     this.ngxService.start()
     var formaData = this.loginForm.value
-    console.log(formaData)
     this.UserService.login(formaData).subscribe(
       (response: any) => {
-        console.log(response)
         this.ngxService.stop()
         this.dialogRef.close()
         localStorage.setItem('userId', response.userId)

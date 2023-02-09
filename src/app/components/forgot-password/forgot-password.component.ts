@@ -35,7 +35,6 @@ export class ForgotPasswordComponent {
   handleSubmit() {
     this.ngxService.start()
     var formData = this.forgotPasswordForm.value
-    console.log(formData)
     this.UserService.forgotPassword(formData).subscribe(
       (response: any) => {
         this.ngxService.stop()
@@ -44,13 +43,13 @@ export class ForgotPasswordComponent {
         this.snackbarService.openSnackBar(this.responseMessage, '')
       },
       (error) => {
+        console.log(error);
         this.ngxService.stop()
         if (error?.error?.message) {
           this.responseMessage = error.error?.message
         } else {
           this.responseMessage = GlobalConstants.genericError
         }
-
         this.snackbarService.openSnackBar(
           this.responseMessage,
           GlobalConstants.error,

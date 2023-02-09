@@ -19,7 +19,7 @@ export class SnackbarService {
       this.snackbar.open(message, '', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
-        duration: 4000,
+        duration: 3000,
         panelClass: ['green-snackbar'],
       })
     }

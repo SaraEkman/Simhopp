@@ -41,14 +41,12 @@ export class ChangeUseremailComponent {
   handleSubmit() {
     this.ngxService.start()
     var formData = this.changeUserEmailForm.value
-    console.log(formData)
     let data = {
       "id": localStorage.getItem('userId'),
       "userEmail": localStorage.getItem('userEmail'),
       "newUserEmail": formData.newUserEmail,
       "password": formData.password
     }
-    console.log(data);
     this.UserService.changeUserEmail(data).subscribe(
       (response: any) => {
         this.ngxService.stop()
@@ -58,6 +56,7 @@ export class ChangeUseremailComponent {
         localStorage.clear()
       },
       (error) => {
+        console.log(error);
         this.ngxService.stop()
         if (error?.error?.message) {
           this.responseMessage = error.error?.message

@@ -45,12 +45,9 @@ export class SignInComponent {
   handleSubmit() {
     this.ngxService.start()
     var formaData = this.signupForm.value
-    console.log(formaData);
     var data: User = new User(formaData.userName, formaData.userEmail, formaData.password)
-    console.log(data);
     this.UserService.signup(data).subscribe(
       (response: any) => {
-        console.log(response);
         this.ngxService.stop();
         this.dialogRef.close();
         this.responseMessage = response?.message;
