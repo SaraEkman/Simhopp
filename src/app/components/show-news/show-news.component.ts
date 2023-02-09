@@ -41,7 +41,7 @@ export class ShowNewsComponent {
     this.newsService.getNews(4).subscribe(
       (response: any) => {
         this.ngxService.stop()
-        this.getNewsForUser = response.map((el: INewsForUser, i: number) => {
+        this.getNewsForUser = response.news.map((el: INewsForUser, i: number) => {
           let date = new Date(el.createDate).toISOString().slice(0, 10)
           return {
             ...el,
