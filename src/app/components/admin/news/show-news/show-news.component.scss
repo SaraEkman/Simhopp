@@ -23,9 +23,11 @@ mat-card {
   }
 }
 
+.responsive-table {
+  overflow-x: auto !important;
+}
 table {
   width: 100%;
-  // border-collapse: collapse;
   overflow: scroll;
 
   .mat-mdc-row .mat-mdc-cell {
@@ -58,20 +60,3 @@ table {
     object-fit: cover;
   }
 }
-
-// @media screen and (max-width: 768px) {
-//   .news {
-//     .news-content {
-//       font-size: 1rem;
-//     }
-//   }
-//   .responsive-table {
-//     overflow-x: auto !important;
-//   }
-//   .mat-table {
-//     min-width: 800px;
-//   }
-//   .mat-row {
-//     height: auto;
-//   }
-// }

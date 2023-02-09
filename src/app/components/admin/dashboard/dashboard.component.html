@@ -1,29 +1,28 @@
 <body>
-  <!-- <button class="log-Out-btn" mat-menu-item (click)="handleLogOut()"><mat-icon>exit_to_app</mat-icon> Logout</button>
-  <mat-card align="center">
-    <b><span>Dashboard</span></b>
-  </mat-card>
-  <div class="row-btns">
-    <button class="button" routerLink="/">Home</button>
-    <button class="button" [routerLink]="['show-news']">Nyheter</button>
-    <button class="button" [routerLink]="['show-members']">Medlemmar</button>
-  </div> -->
   <section class="dashboard-container">
     <div>
       <mat-menu xPosition="before" class="mat-menu" #appMenu="matMenu">
-        <button class="mat-menu-item" mat-menu-item  routerLink="/"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>Home</button>
-        <button class="mat-menu-item" mat-menu-item [routerLink]="['show-news']"><mat-icon>change_history</mat-icon>Nyheter</button>
-        <button class="mat-menu-item" mat-menu-item [routerLink]="['show-members']"><mat-icon>people</mat-icon>Medlemmar</button>
-        <button class="log-Out-btn mat-menu-item" mat-menu-item (click)="handleLogOut()"><mat-icon>exit_to_app</mat-icon>
+        <button class="mat-menu-item" mat-menu-item routerLink="/"><mat-icon aria-hidden="false"
+            aria-label="Example home icon" fontIcon="home"></mat-icon>Home</button>
+        <button class="mat-menu-item" mat-menu-item
+          [routerLink]="['show-news']"><mat-icon>change_history</mat-icon>Nyheter</button>
+        <button class="mat-menu-item" mat-menu-item
+          [routerLink]="['show-members']"><mat-icon>people</mat-icon>Medlemmar</button>
+        <button class="log-Out-btn mat-menu-item" mat-menu-item
+          (click)="handleLogOut()"><mat-icon>exit_to_app</mat-icon>
           Logout</button>
       </mat-menu>
 
       <div class="btn-content">
         <button class="mat-menu-btn" mat-icon-button [matMenuTriggerFor]="appMenu"><mat-icon>menu</mat-icon></button>
       </div>
-  </div>
-    <router-outlet></router-outlet>
+    </div>
 
+    <article>
+      <h2>Välkommen till Stockholmspolisens IF Simhopp admin dashboard</h2>
+      <h3>Sveriges bästa simhoppsklubb</h3>
+    </article>
+
+    <router-outlet></router-outlet>
   </section>
 </body>
-<!-- <mat-icon>dashboard</mat-icon> -->

@@ -1,141 +1,45 @@
-// body {
-//   .log-Out-btn {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     z-index: 1;
-//     display: flex;
-//     align-items: center;
-//     gap: 8px;
-//     color: white;
-//     padding: 4px 20px;
-//     border: none;
-//     border-radius: 4px;
-//     background-color: #126b96;
-//     &:hover {
-//       background-color: black;
-//     }
-//   }
+body {
+  .dashboard-container {
+    background-image: url('../../../../assets/images/children-group-at-swimming.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
 
-//   mat-card {
-//     padding: 20px;
-//     margin-bottom: 20px;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-
-//     span {
-//       font-size: 1.5rem;
-//       font-weight: 500;
-//       text-align: center;
-//       padding: 10px;
-//     }
-//   }
-
-//   div {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 10px;
-//     padding: 10px;
-//     margin: 10px;
-//     border-radius: 4px;
-//     background-color: #f1f1f1;
-//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-//     transition: 0.3s;
-//     &:hover {
-//       box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-//     }
-//   }
-// }
-
-// .position-relative {
-//   position: relative;
-// }
-
-// .add-contact {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-// }
-
-// .button {
-//   border: none;
-//   outline: inline-block;
-//   padding: 8px;
-//   background-color: #ff910d;
-//   color: white;
-//   text-align: center;
-//   cursor: pointer;
-//   width: 100%;
-//   font-weight: bold;
-//   font-size: 1.2rem;
-//   border-radius: 4px;
-//   transition: 0.3s;
-
-//   &:hover {
-//     background-color: black;
-//   }
-// }
-
-// .column {
-//   float: left;
-//   width: 33.33%;
-//   margin-bottom: 16px;
-//   padding: 0 8px;
-// }
-// .row-btns {
-//   display: flex;
-//   justify-content: space-between;
-//   gap: 10px;
-// }
-
-// .card {
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-//   margin: 8px;
-// }
-
-// .about-section {
-//   padding: 50px;
-//   text-align: center;
-//   background-color: #474e5d;
-//   color: white;
-// }
-
-// @media screen and (max-width: 650px) {
-//   .column {
-//     width: 100%;
-//     display: block;
-//   }
-// }
-
-.dashboard-container {
-  background-image: url('../../../../assets/images/children-group-at-swimming.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  height: 100vh;
-  // width: 100vw;
-
-  div {
-    .btn-content {
-      height: 100px;
-      align-items: center;
-      .mat-menu-btn {
-        position: absolute;
-        top: 30px;
-        right: 10px;
-        height: 70px;
-        width: 70px;
-        mat-icon {
-          font-size: 45px;
-          height: 45px;
+    div {
+      .btn-content {
+        height: 100px;
+        align-items: center;
+        .mat-menu-btn {
+          position: absolute;
+          top: 30px;
+          right: 10px;
+          height: 70px;
+          width: 70px;
+          mat-icon {
+            font-size: 45px;
+            height: 45px;
+          }
+          &:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+          }
         }
-        &:hover {
-           box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
-        }
+      }
+    }
+    article {
+      color: #fff;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.543);
+      padding: 1rem;
+      h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      h3 {
+        font-size: 1rem;
+        font-weight: 700;
       }
     }
   }

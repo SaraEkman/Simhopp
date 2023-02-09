@@ -17,15 +17,11 @@ export class DashboardComponent {
   isAdmin: boolean = false
 
   constructor(
-    private adminService: AdminService,
-    private ngxService: NgxUiLoaderService,
-    private snackbarService: SnackbarService,
     private router: Router,
     private authService: AuthService,
     private dialog: MatDialog,
   ) {
     this.isAdmin = this.authService.isAuthenticated()
-    console.log(this.isAdmin)
   }
 
   handleLogOut() {

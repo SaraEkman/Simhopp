@@ -7,36 +7,9 @@ import { RouteGuardService } from './services/route-guard.service'
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component'
 import { ShowNewsComponent } from './components/admin/news/show-news/show-news.component'
 import { ShowMembersComponent } from './components/admin/members/show-members/show-members.component'
-import { SidebarComponent } from './components/admin/sidebar/sidebar.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  // {
-  //   path: 'dashboard',
-  //   component: DashboardComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirectTo: '',
-  //       pathMatch: 'full',
-  //     },
-  //     {
-  //       path: '',
-  //       loadChildren: () =>
-  //         './material-component/material.module'.then(
-  //           (m) => m.MaterialComponentsModule),
-  //       canActivate: [RouteGuardService],
-  //       data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
-  //     },
-  //     {
-  //       path: 'dashboard',
-  //       loadChildren: () =>
-  //         './dashboard/dashboard.module'.then((m) => m.DashboardModule),
-  //       canActivate: [RouteGuardService],
-  //       data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
-  //     },
-  //   ],
-  // },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -46,27 +19,6 @@ const routes: Routes = [
         redirectTo: '',
         pathMatch: 'full',
       },
-      // {
-      //   path: '',
-      //   loadChildren: () =>
-      //     './material-component/material.module'.then(
-      //       (m) => m.MaterialComponentsModule),
-      //   canActivate: [RouteGuardService],
-      //   data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
-      // },
-      // {
-      //   path: 'sidebar',
-      //   component: SidebarComponent
-      // },
-
-      // {
-      //   path: 'show-news',
-      //   component: ShowNewsComponent,
-      // },
-      // {
-      //   path: 'show-members',
-      //   component: ShowMembersComponent,
-      // },
       {
         path: '',
         loadChildren: () =>
@@ -76,50 +28,6 @@ const routes: Routes = [
       },
     ],
   },
-
-  // {
-  //   path: 'adminUsers',
-  //   loadChildren: () =>
-  //     import('./components/admin-users/admin-users.module').then(
-  //       (m) => m.AdminUsersModule,
-  //     ),
-  //   canActivate: [RouteGuardService],
-  //   data: { expectedRole: [GlobalConstants.user, GlobalConstants.admin] },
-  // },
-
-  // {
-  //   path: 'dashboardMember',
-  //   component: DashboardMemberComponent,
-  //   canActivate: [RouteGuardService],
-  //   data: { expectedRole: [GlobalConstants.admin] },
-  //   children: [
-  //     {
-  //       path: 'showMembers',
-  //       component: ShowMembersComponent,
-  //       canActivate: [RouteGuardService],
-  //       data: { expectedRole: [GlobalConstants.admin] },
-  //     },
-  //     {
-  //       path: 'editMember',
-  //       component: EditMemberComponent,
-  //       canActivate: [RouteGuardService],
-  //       data: { expectedRole: [GlobalConstants.admin] },
-  //     },
-  //     {
-  //       path: 'addMember',
-  //       component: AddMemberComponent,
-  //       canActivate: [RouteGuardService],
-  //       data: { expectedRole: [GlobalConstants.admin] },
-  //     },
-  //     {
-  //       path: 'deleteMember',
-  //       component: DeleteMemberComponent,
-  //       canActivate: [RouteGuardService],
-  //       data: { expectedRole: [GlobalConstants.admin] },
-  //     },
-  //   ],
-  // },
-
   { path: '**', component: NotFoundComponent },
 ]
 

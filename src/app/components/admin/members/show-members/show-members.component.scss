@@ -26,32 +26,32 @@ mat-card {
   }
 }
 
-table {
-  width: 100%;
-  // border-collapse: collapse;
-  overflow: scroll;
+.responsive-table {
+  overflow-x: auto !important;
+  table {
+    width: 100%;
+    overflow: scroll;
 
-  .mat-mdc-row .mat-mdc-cell {
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
-  }
-  .mat-mdc-row:hover .mat-mdc-cell {
-    border-color: currentColor;
-    cursor: default;
-  }
-  .demo-row-is-clicked {
-    font-weight: bold;
-  }
+    .mat-mdc-row .mat-mdc-cell {
+      border-bottom: 1px solid transparent;
+      border-top: 1px solid transparent;
+    }
+    .mat-mdc-row:hover .mat-mdc-cell {
+      border-color: currentColor;
+      cursor: default;
+    }
+    .demo-row-is-clicked {
+      font-weight: bold;
+    }
 
-  //   .soft-deleted {
-  //     text-decoration: line-through;
-  //     color: gray;
-  //   }
-  //   .btn {
-  //     display: none;
-  //   }
-  //   .not-soft-deleted {
-  //     text-decoration: none;
-  //     color: black;
-  //   }
+    .soft-deleted {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .not-soft-deleted {
+      text-decoration: none;
+      color: black;
+    }
+  }
 }

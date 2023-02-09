@@ -1,3 +1,10 @@
-h5 {
-  font-size: 19px;
+.confirmation-div {
+  padding: 1rem;
+  border: 2px solid #ff910d;
+  
+  mat-dialog-content {
+    h5 {
+      font-size: 19px;
+    }
+  }
 }

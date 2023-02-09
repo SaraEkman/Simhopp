@@ -3,6 +3,7 @@
     <span class="title-center">{{dialogData.action}} Member</span>
   </mat-toolbar-row>
 </mat-toolbar>
+
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="memberForm">
     <div fxFlex fxLayout="column">
@@ -42,14 +43,11 @@
         <mat-select formControlName="admin">
           <mat-option *ngFor="let role of roles" [value]="role.value">{{role.viewValue}}</mat-option>
         </mat-select>
-        <!-- <mat-error
-          *ngIf="memberForm.controls.admin.invalid && (memberForm.controls.admin.dirty || memberForm.controls.admin.touched)">
-          <span *ngIf="memberForm.controls.admin.errors?.['required']">Roll är obligatoriskt</span>
-        </mat-error> -->
       </mat-form-field>
     </div>
   </form>
 </mat-dialog-content>
+
 <mat-dialog-actions align="center">
   <button mat-raised-button type="submit" color="primary" (click)="handleSubmit()"
     [disabled]="!(memberForm.valid && memberForm.dirty)">{{action}}</button>

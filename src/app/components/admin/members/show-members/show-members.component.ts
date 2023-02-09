@@ -40,7 +40,6 @@ export class ShowMembersComponent {
   getUsers() {
     this.adminService.getMembers().subscribe(
       (response: any) => {
-        console.log(response)
         this.ngxService.stop()
         this.member = response
 
@@ -53,9 +52,7 @@ export class ShowMembersComponent {
             softDelete: softDelete,
           }
         })
-        console.log('usersList', usersList)
         this.dataSource = new MatTableDataSource(usersList)
-        console.log('this.dataSource', this.dataSource)
       },
       (error: any) => {
         this.ngxService.stop()
@@ -73,7 +70,6 @@ export class ShowMembersComponent {
     )
   }
   applyFilter(event: Event) {
-    // console.log(event)
     const filterValue = (event.target as HTMLInputElement).value
     this.dataSource.filter = filterValue.trim().toLowerCase()
   }
@@ -159,38 +155,37 @@ export class ShowMembersComponent {
 
     this.ngxService.start()
 
-    let softDeleteValue;
-      if (softDelete) {
-         softDeleteValue = softDelete = true
-      } else if (!softDelete) {
-        softDeleteValue = softDelete = false
-      }
-      let data = {
-        id: id,
-        softDelete: softDeleteValue,
-      }
-      console.log(data)
-      this.adminService.softDeleteMember(data).subscribe(
-        (response: any) => {
-          this.ngxService.stop()
-          this.responseMessage = response.message
-          this.snackbarService.openSnackBar(this.responseMessage, '')
-          this.getUsers()
-        },
-        (error: any) => {
-          this.ngxService.stop()
-          console.log(error)
-          if (error.error?.message) {
-            this.responseMessage = error.error?.message
-          } else {
-            this.responseMessage = GlobalConstants.genericError
-          }
-          this.snackbarService.openSnackBar(
-            this.responseMessage,
-            GlobalConstants.error,
-          )
-        },
-      )
-
+    let softDeleteValue
+    if (softDelete) {
+      softDeleteValue = softDelete = true
+    } else if (!softDelete) {
+      softDeleteValue = softDelete = false
+    }
+    let data = {
+      id: id,
+      softDelete: softDeleteValue,
+    }
+    console.log(data)
+    this.adminService.softDeleteMember(data).subscribe(
+      (response: any) => {
+        this.ngxService.stop()
+        this.responseMessage = response.message
+        this.snackbarService.openSnackBar(this.responseMessage, '')
+        this.getUsers()
+      },
+      (error: any) => {
+        this.ngxService.stop()
+        console.log(error)
+        if (error.error?.message) {
+          this.responseMessage = error.error?.message
+        } else {
+          this.responseMessage = GlobalConstants.genericError
+        }
+        this.snackbarService.openSnackBar(
+          this.responseMessage,
+          GlobalConstants.error,
+        )
+      },
+    )
   }
 }

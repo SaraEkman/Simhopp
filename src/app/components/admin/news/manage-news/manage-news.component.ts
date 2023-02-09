@@ -1,13 +1,12 @@
-import { Component, EventEmitter, Inject, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Inject } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { AdminService } from 'src/app/services/admin.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
 import { AngularEditorConfig } from '@kolkov/angular-editor'
-// import { DomSanitizer } from '@angular/platform-browser';
-import { SanitizeHtmlPipe } from '../manage-news/sanitize-html.pipe'
 import { HttpClient } from '@angular/common/http'
+import { SanitizeHtmlPipe } from '../manage-news/sanitize-html.pipe'
 
 @Component({
   selector: 'app-manage-news',
@@ -23,15 +22,6 @@ export class ManageNewsComponent {
   responseMessage: any
   userId: any
   config: AngularEditorConfig = {
-    // editable: true,
-    // spellcheck: true,
-    // height: '15rem',
-    // minHeight: '5rem',
-    // placeholder: 'Enter text here...',
-    // translate: 'no',
-    // defaultParagraphSeparator: 'p',
-    // defaultFontName: 'Arial',
-
     editable: true,
     spellcheck: true,
     height: '15rem',
@@ -74,7 +64,6 @@ export class ManageNewsComponent {
       ['bold', 'italic'],
       ['fontSize'],
       ['insertImage', 'insertVideo'],
-      //  ['insertVideo'],
     ],
   }
 
@@ -84,14 +73,11 @@ export class ManageNewsComponent {
 
   onFileChanged(event: any) {
     this.selectedFile = event.target.files[0]
-    console.log(this.selectedFile)
 
     var reader = new FileReader()
     reader.readAsDataURL(event.target.files[0])
     reader.onload = (event2) => {
       this.imageUrl = reader.result
-      console.log(this.imageUrl)
-      console.log(event2)
     }
   }
 
@@ -101,8 +87,9 @@ export class ManageNewsComponent {
     private adminService: AdminService,
     public dialogRef: MatDialogRef<ManageNewsComponent>,
     private snackbarService: SnackbarService,
-    private sanitizeHtml: SanitizeHtmlPipe,
     private http: HttpClient,
+    private sanitizeHtml: SanitizeHtmlPipe,
+
   ) {
     this.userId = localStorage.getItem('userId')
   }
@@ -116,7 +103,6 @@ export class ManageNewsComponent {
     if (this.dialogData.action == 'Edit') {
       this.dialogAction = 'Edit'
       this.action = 'Update'
-      // this.newsForm.patchValue(this.dialogData.data)
       this.newsForm.patchValue({
         content: this.dialogData.data.content,
       })
@@ -133,23 +119,17 @@ export class ManageNewsComponent {
   }
 
   add() {
-    console.log(this.newsForm.value)
     var formData = this.newsForm.value
-
     const uploadData = new FormData()
     uploadData.append('image', this.selectedFile)
-
     this.http
       .post(`${GlobalConstants.url}/uploads`, uploadData)
       .subscribe((res: any) => {
-        console.log(res.filename)
-
         var dataNews = {
           content: formData.content,
           userId: this.userId,
           image: res.filename,
         }
-        console.log(dataNews)
         if (res) {
           this.adminService.addNews(dataNews).subscribe(
             (response: any) => {
@@ -177,23 +157,18 @@ export class ManageNewsComponent {
   }
 
   edit() {
-    console.log(this.newsForm.value)
     var formData = this.newsForm.value
-
     const uploadData = new FormData()
     uploadData.append('image', this.selectedFile)
-
     this.http
       .post(`${GlobalConstants.url}/uploads`, uploadData)
       .subscribe((res: any) => {
-        console.log(res.filename)
         var data = {
           id: this.dialogData.data.id,
           content: formData.content,
           userId: Number(this.userId),
           image: res.filename,
         }
-        console.log(data)
         this.adminService.updateNews(data).subscribe(
           (response: any) => {
             this.dialogRef.close()
@@ -216,31 +191,5 @@ export class ManageNewsComponent {
           },
         )
       })
-  }
-
-  delete() {
-    var data = { id: this.dialogData.data.id, userId: this.userId }
-    console.log(data)
-    // this.adminService.deleteNews(data).subscribe(
-    //   (response: any) => {
-    //     this.dialogRef.close()
-    //     this.onDeleteNews.emit()
-    //     this.responseMessage = response.message
-    //     this.snackbarService.openSnackBar(this.responseMessage, 'success')
-    //   },
-    //   (error: any) => {
-    //     console.log(error)
-    //     this.dialogRef.close()
-    //     if (error.error?.message) {
-    //       this.responseMessage = error.error?.message
-    //     } else {
-    //       this.responseMessage = GlobalConstants.genericError
-    //     }
-    //     this.snackbarService.openSnackBar(
-    //       this.responseMessage,
-    //       GlobalConstants.error,
-    //     )
-    //   },
-    // )
   }
 }

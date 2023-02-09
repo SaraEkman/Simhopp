@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { AdminService } from 'src/app/services/admin.service'
 import { SnackbarService } from 'src/app/services/snackbar.service'
 import { GlobalConstants } from 'src/app/shared/global-constants'
-import { AngularEditorConfig } from '@kolkov/angular-editor'
 @Component({
   selector: 'app-manage-members',
   templateUrl: './manage-members.component.html',
@@ -59,8 +58,6 @@ export class ManageMembersComponent {
 
   add() {
     var formData = this.memberForm.value
-    // var data = { userName: formData.userName, : this.userId }
-    console.log(formData);
     this.adminService.addMember(formData).subscribe(
       (response: any) => {
         this.dialogRef.close()
@@ -88,9 +85,11 @@ export class ManageMembersComponent {
     var formData = this.memberForm.value
     var data = {
       id: this.dialogData.data.id,
+      userName: formData.userName,
+      userEmail: formData.userEmail,
+      password: formData.password,
       admin: formData.admin,
     }
-    console.log(data);
     this.adminService.updateMember(data).subscribe(
       (response: any) => {
         this.dialogRef.close()
