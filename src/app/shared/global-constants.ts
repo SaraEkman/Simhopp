@@ -1,7 +1,7 @@
 export class GlobalConstants {
 //URL
-  public static url: string = 'http://localhost:3000'
-  // public static url: string = 'https://simhopp-backend.herokuapp.com'
+  // public static url: string = 'http://localhost:3000'
+  public static url: string = 'https://simhopp.vercel.app'
 
   //Message
   public static genericError: string =
